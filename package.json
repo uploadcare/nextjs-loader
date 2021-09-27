@@ -19,7 +19,9 @@
     "loader",
     "images",
     "cdn",
-    "react"
+    "optimization",
+    "image-optimization",
+    "performance-optimization"
   ],
   "files": [
     "index.js"
