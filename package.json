@@ -30,21 +30,17 @@
     "url": "https://github.com/kkomelin/nextjs-uploadcare/issues"
   },
   "homepage": "https://github.com/kkomelin/nextjs-uploadcare#readme",
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
+    "next": "^11.1.2",
     "webpack": "^5.54.0",
     "webpack-cli": "^4.8.0"
   },
-  "dependencies": {
-    "react": "^17.0.2"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
+  "peerDependencies": {
+    "next": ">= 11.1.2"
   }
 }

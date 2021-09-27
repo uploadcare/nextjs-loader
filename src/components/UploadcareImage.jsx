@@ -1,7 +1,14 @@
-import React from 'react';
+import Image from 'next/image';
+import { uploadcareLoader } from '../util/loader';
 
-export default function UploadcareImage() {
+const UploadcareImage = (props) => {
+
   return (
-    <p></p>
+    <Image
+      loader={uploadcareLoader}
+      {...props}
+    />
   )
 }
+
+export default UploadcareImage;
