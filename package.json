@@ -2,9 +2,11 @@
   "name": "nextjs-uploadcare",
   "version": "0.1.0",
   "description": "Uploadcare custom loader (and more) for Next.js",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack build"
   },
   "repository": {
     "type": "git",
@@ -19,10 +21,30 @@
     "cdn",
     "react"
   ],
+  "files": [
+    "index.js"
+  ],
   "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kkomelin/nextjs-uploadcare/issues"
   },
-  "homepage": "https://github.com/kkomelin/nextjs-uploadcare#readme"
+  "homepage": "https://github.com/kkomelin/nextjs-uploadcare#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.54.0",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  }
 }
