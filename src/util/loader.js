@@ -37,19 +37,28 @@ function getMaxResizeWidth(requestedWidth) {
   return Math.min(Math.max(requestedWidth, 0), MAX_OUTPUT_IMAGE_DIMENSION);
 }
 
-function uploadcareLoader({ root, src, width, quality }) {
+function getProxyEndpoint(publicKey) {
+  // @todo: Take into account the possibility to set a custom domain for the proxy.
+  return `https://${publicKey}.ucr.io`;
+}
+
+function uploadcareLoader({ src, width, quality }) {
+  const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
+  const root = getProxyEndpoint(publicKey);
+
   const isOnCdn = /^https?:\/\/ucarecdn\.com/.test(src);
 
-  if (process.env.NODE_ENV !== "production") {
-    if (!isOnCdn && src.startsWith("/")) {
+  if (process.env.NODE_ENV !== "production" && !isOnCdn) {
+
+    if (publicKey == null || publicKey == "") {
       throw new Error(
-        `Failed to parse "${src}" in "next/image", Uploadcare loader doesn't support relative images.`
+        `The NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY is not set.`
       );
     }
 
-    if (!isOnCdn && !/^https?:\/\/.+\.ucr\.io\/?$/.test(root)) {
+    if (src.startsWith("/")) {
       throw new Error(
-        `Failed to parse "${root}" in "next/image", Uploadcare loader expects proxy endpoint like "https://YOUR_PUBLIC_KEY.ucr.io".`
+        `Failed to parse "${src}" in "next/image", Uploadcare loader doesn't support relative images.`
       );
     }
   }

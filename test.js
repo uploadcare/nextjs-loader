@@ -2,12 +2,20 @@
 
 const uploadcareLoader = require("./src/util/loader");
 
+const addEnvVar = (key, value) => {
+  process.env = Object.assign(process.env, { [key]: value });
+}
+const removeEnvVar = (key) => {
+  delete process.env[key];
+}
+
 test("The loader validates the 'src' parameter", () => {
+  addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
+
   const src = "/relative/image.jpg";
 
   const t = () => {
     uploadcareLoader({
-      root: "",
       src,
       width: "",
       quality: 80,
@@ -17,14 +25,13 @@ test("The loader validates the 'src' parameter", () => {
   expect(t).toThrow(
     `Failed to parse "${src}" in "next/image", Uploadcare loader doesn't support relative images.`
   );
+
+  removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
 });
 
-test("The loader validates the 'root' parameter", () => {
-  const root = "https://wrong-domain.com";
-
+test("The loader validates the NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY config parameter", () => {
   const t = () => {
     uploadcareLoader({
-      root,
       src: "",
       width: "",
       quality: 80,
@@ -32,6 +39,6 @@ test("The loader validates the 'root' parameter", () => {
   };
   expect(t).toThrow(Error);
   expect(t).toThrow(
-    `Failed to parse "${root}" in "next/image", Uploadcare loader expects proxy endpoint like "https://YOUR_PUBLIC_KEY.ucr.io".`
+    `The NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY is not set.`
   );
 });
