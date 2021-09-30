@@ -24,8 +24,10 @@
     "performance-optimization"
   ],
   "files": [
-    "index.js"
+    "dist/index.js",
+    "index.d.ts"
   ],
+  "types": "index.d.ts",
   "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
   "license": "MIT",
   "bugs": {
