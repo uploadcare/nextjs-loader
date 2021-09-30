@@ -37,7 +37,7 @@ function getMaxResizeWidth(requestedWidth) {
   return Math.min(Math.max(requestedWidth, 0), MAX_OUTPUT_IMAGE_DIMENSION);
 }
 
-export function uploadcareLoader({ root, src, width, quality }) {
+function uploadcareLoader({ root, src, width, quality }) {
   const isOnCdn = /^https?:\/\/ucarecdn\.com/.test(src);
 
   if (process.env.NODE_ENV !== "production") {
@@ -81,3 +81,5 @@ export function uploadcareLoader({ root, src, width, quality }) {
 
   return `${trimTrailingSlash(root)}${paramsString}${src}`;
 }
+
+module.exports = uploadcareLoader;
