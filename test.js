@@ -23,7 +23,7 @@ test("The loader validates the 'src' parameter", () => {
   };
   expect(t).toThrow(Error);
   expect(t).toThrow(
-    `Failed to parse "${src}" in "next/image", Uploadcare loader doesn't support relative images.`
+    `Failed to parse "${src}" in "uploadcareLoader", Uploadcare loader doesn't support relative images.`
   );
 
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');

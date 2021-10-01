@@ -1,5 +1,5 @@
 const MAX_OUTPUT_IMAGE_DIMENSION = 3000;
-const SKIPPED_EXTENSIONS = ["svg", "gif"];
+const NOT_PROCESSED_EXTENSIONS = ["svg", "gif"];
 const DEFAULT_PARAMS = ["format/auto", "stretch/off"];
 
 function uploadcareLoader({ src, width, quality }) {
@@ -18,7 +18,7 @@ function uploadcareLoader({ src, width, quality }) {
 
     if (src.startsWith("/")) {
       throw new Error(
-        `Failed to parse "${src}" in "next/image", Uploadcare loader doesn't support relative images.`
+        `Failed to parse "${src}" in "uploadcareLoader", Uploadcare loader doesn't support relative images.`
       );
     }
   }
@@ -27,19 +27,18 @@ function uploadcareLoader({ src, width, quality }) {
   const extension = getExtension(filename);
 
   // Some extensions are not processed by Uploadcare, e.g. SVG.
-  if (SKIPPED_EXTENSIONS.includes(extension)) {
+  if (NOT_PROCESSED_EXTENSIONS.includes(extension)) {
     return isOnCdn ? src : `${trimTrailingSlash(root)}${src}`;
   }
 
+  const qualityString = convertToUploadcareQualityString(quality);
   const maxResizeWidth = getMaxResizeWidth(width);
-  // Demo: https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/resize/300x/vercel.png
-  const params = DEFAULT_PARAMS.concat([`resize/${maxResizeWidth}x`]);
 
-  if (quality) {
-    params.push(`quality/${convertToUploadcareQuality(quality)}`);
-  } else {
-    params.push("quality/smart");
-  }
+  // Demo: https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/resize/300x/vercel.png
+  const params = DEFAULT_PARAMS.concat([
+    `resize/${maxResizeWidth}x`,
+    `quality/${qualityString}`
+  ]);
 
   const paramsString = "/-/" + params.join("/-/") + "/";
 
@@ -63,11 +62,14 @@ function trimTrailingSlash(url) {
   return url.replace(/\/$/, "");
 }
 
-function convertToUploadcareQuality(requestedQuality) {
-  /**
-   * Uploadcare doesn't support integer-based quality modificators,
-   * so we need to map them onto uploadcare's equivalents
-   */
+function convertToUploadcareQualityString(requestedQuality) {
+  // If any particular quality has not been requested, we use the smart quality mode.
+  if (!requestedQuality) {
+    return 'smart';
+  }
+
+  // Uploadcare doesn't support integer-based quality modificators,
+  // so we need to map them onto uploadcare's equivalents
   const names = ["lightest", "lighter", "normal", "better", "best"];
   const intervals = [0, 38, 70, 80, 87, 100];
   const nameIdx = intervals.findIndex((min, idx) => {
