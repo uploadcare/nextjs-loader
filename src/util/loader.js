@@ -1,5 +1,55 @@
 const MAX_OUTPUT_IMAGE_DIMENSION = 3000;
 const SKIPPED_EXTENSIONS = ["svg", "gif"];
+const DEFAULT_PARAMS = ["format/auto", "stretch/off"];
+
+function uploadcareLoader({ src, width, quality }) {
+  const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
+  const root = getProxyEndpoint(publicKey);
+
+  const isOnCdn = isCdnUrl(src);
+
+  if (!isProduction() && !isOnCdn) {
+
+    if (publicKey == null || publicKey == "") {
+      throw new Error(
+        `The NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY is not set.`
+      );
+    }
+
+    if (src.startsWith("/")) {
+      throw new Error(
+        `Failed to parse "${src}" in "next/image", Uploadcare loader doesn't support relative images.`
+      );
+    }
+  }
+
+  const filename = getFilename(src);
+  const extension = getExtension(filename);
+
+  // Some extensions are not processed by Uploadcare, e.g. SVG.
+  if (SKIPPED_EXTENSIONS.includes(extension)) {
+    return isOnCdn ? src : `${trimTrailingSlash(root)}${src}`;
+  }
+
+  const maxResizeWidth = getMaxResizeWidth(width);
+  // Demo: https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/resize/300x/vercel.png
+  const params = DEFAULT_PARAMS.concat([`resize/${maxResizeWidth}x`]);
+
+  if (quality) {
+    params.push(`quality/${convertToUploadcareQuality(quality)}`);
+  } else {
+    params.push("quality/smart");
+  }
+
+  const paramsString = "/-/" + params.join("/-/") + "/";
+
+  if (isOnCdn) {
+    const withoutFilename = src.slice(0, src.lastIndexOf("/"));
+    return `${withoutFilename}${paramsString}${filename}`;
+  }
+
+  return `${trimTrailingSlash(root)}${paramsString}${src}`;
+}
 
 function getExtension(filename) {
   return filename.toLowerCase().split("?")[0].split("#")[0].split(".")[1];
@@ -42,53 +92,12 @@ function getProxyEndpoint(publicKey) {
   return `https://${publicKey}.ucr.io`;
 }
 
-function uploadcareLoader({ src, width, quality }) {
-  const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
-  const root = getProxyEndpoint(publicKey);
+function isCdnUrl(url) {
+  return /^https?:\/\/ucarecdn\.com/.test(url);
+}
 
-  const isOnCdn = /^https?:\/\/ucarecdn\.com/.test(src);
-
-  if (process.env.NODE_ENV !== "production" && !isOnCdn) {
-
-    if (publicKey == null || publicKey == "") {
-      throw new Error(
-        `The NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY is not set.`
-      );
-    }
-
-    if (src.startsWith("/")) {
-      throw new Error(
-        `Failed to parse "${src}" in "next/image", Uploadcare loader doesn't support relative images.`
-      );
-    }
-  }
-
-  const filename = getFilename(src);
-  const extension = getExtension(filename);
-
-  // Some extensions are not processed by Uploadcare, e.g. SVG.
-  if (SKIPPED_EXTENSIONS.includes(extension)) {
-    return isOnCdn ? src : `${trimTrailingSlash(root)}${src}`;
-  }
-
-  const maxResizeWidth = getMaxResizeWidth(width);
-  // Demo: https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/resize/300x/vercel.png
-  const params = ["format/auto", "stretch/off", `resize/${maxResizeWidth}x`];
-
-  if (quality) {
-    params.push(`quality/${convertToUploadcareQuality(quality)}`);
-  } else {
-    params.push("quality/smart");
-  }
-
-  const paramsString = "/-/" + params.join("/-/") + "/";
-
-  if (isOnCdn) {
-    const withoutFilename = src.slice(0, src.lastIndexOf("/"));
-    return `${withoutFilename}${paramsString}${filename}`;
-  }
-
-  return `${trimTrailingSlash(root)}${paramsString}${src}`;
+function isProduction() {
+  return process.env.NODE_ENV === "production";
 }
 
 module.exports = uploadcareLoader;
