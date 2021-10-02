@@ -13,7 +13,7 @@ NEXT_PUBLIC_API_PARAMETERS="format/auto, stretch/off, progressive/yes"
 
 Default API parameters are:
 `format/auto, stretch/off, progressive/yes, resize/[width]x, quality/[quality]`  
-**The parameters set through NEXT_PUBLIC_API_PARAMETERS override corresponding default parameters and keep others in place.**
+> Please note NEXT_PUBLIC_API_PARAMETERS override corresponding default parameters and keep others in place.
 
 ## Usage
 
