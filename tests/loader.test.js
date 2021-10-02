@@ -37,7 +37,7 @@ test("The loader validates the NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY config paramete
   );
 });
 
-test("The loader parses user paramters", () => {
+test("The loader parses user paramters properly", () => {
   const src = "https:/example.com/image.jpg";
 
   addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
