@@ -53,3 +53,4 @@ import { uploadcareLoader } from 'nextjs-loader';
 ## Links
 
 - [Uploadcare image compression documentation](https://uploadcare.com/docs/transformations/image/compression/)
+- [Uploadcare File Uploader for React](https://github.com/uploadcare/react-widget)
