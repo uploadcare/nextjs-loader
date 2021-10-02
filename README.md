@@ -23,23 +23,27 @@ import Image from 'next/image';
 import { UploadcareImage } from 'nextjs-loader';
 
 <UploadcareImage
-  src="https://your-domain/image.jpg" 
-  width="500" 
+  alt="A test image"
+  src="https://your-domain/image.jpg"
+  width="400"
+  height="300"
   quality="80"
 />
 ```
 The `UploadcareImage` component supports the same parameters as the Next `Image` component.
 
-**Option 2**. Pass the `uploadcareLoader` function through `Image` component property:
+**Option 2**. Pass `uploadcareLoader` through `Image` component property
 ```jsx
 import Image from 'next/image';
 import { uploadcareLoader } from 'nextjs-loader';
 
 <Image 
-  src="https://your-domain/image.jpg" 
-  width="500" 
+  alt="A test image"
+  src="https://your-domain/image.jpg"
+  width="400"
+  height="300"
   quality="80"
-  loader={uploadcareLoader} 
+  loader={uploadcareLoader}
 />
 ```
 

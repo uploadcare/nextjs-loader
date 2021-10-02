@@ -29,6 +29,7 @@ function uploadcareLoader({ src, width, quality }) {
 
   // Some extensions are not processed by Uploadcare, e.g. SVG.
   if (NOT_PROCESSED_EXTENSIONS.includes(extension)) {
+    // @fixme: Fix the non-CDN url
     return isOnCdn ? src : `${trimTrailingSlash(root)}${src}`;
   }
 
