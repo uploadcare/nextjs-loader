@@ -6,14 +6,17 @@
 
 ```ini
 #.env
+# Get it from Dashboard -> API Keys -> Public key
 NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY="YOUR_PUBLIC_KEY"
-# A comma-separated list of API parameters.
-NEXT_PUBLIC_API_PARAMETERS="format/auto, stretch/off, progressive/yes"
+# A comma-separated list of API parameters
+NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS="format/auto, stretch/off, progressive/yes"
+# Default Uploadcare CDN domain is ucarecdn.com
+NEXT_PUBLIC_UPLOADCARE_CDN_DOMAIN="cdn.example.com"
 ```
 
 Default API parameters are:
 `format/auto, stretch/off, progressive/yes, resize/[width]x, quality/[quality]`  
-> Please note NEXT_PUBLIC_API_PARAMETERS override corresponding default parameters and keep others in place.
+> Please note `NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS` override corresponding default parameters and keep others in place.
 
 ## Usage
 

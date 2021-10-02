@@ -70,8 +70,12 @@ function getProxyEndpoint(publicKey) {
   return `https://${publicKey}.ucr.io`;
 }
 
-function isCdnUrl(url) {
-  return /^https?:\/\/ucarecdn\.com/.test(url);
+function isCdnUrl(url, cdnDomain) {
+  const escapedCdnDomain = cdnDomain.replace('.', '\.');
+
+  const regexp = new RegExp(`^https?:\/\/${escapedCdnDomain}`);
+
+  return regexp.test(url);
 }
 
 function isProduction() {

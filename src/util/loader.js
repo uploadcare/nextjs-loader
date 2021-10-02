@@ -3,11 +3,12 @@ const { trimTrailingSlash, mergeParams, getMaxResizeWidth, convertToUploadcareQu
 
 function uploadcareLoader({ src, width, quality }) {
   const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
-  const userParamsString = process.env.NEXT_PUBLIC_API_PARAMETERS || '';
+  const userParamsString = process.env.NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS || '';
+  const cdnDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CDN_DOMAIN || 'ucarecdn.com';
 
   const root = getProxyEndpoint(publicKey);
 
-  const isOnCdn = isCdnUrl(src);
+  const isOnCdn = isCdnUrl(src, cdnDomain);
 
   if (!isProduction() && !isOnCdn) {
 
