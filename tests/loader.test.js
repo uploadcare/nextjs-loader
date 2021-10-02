@@ -1,13 +1,7 @@
 "use strict";
 
-const uploadcareLoader = require("./src/util/loader");
-
-const addEnvVar = (key, value) => {
-  process.env = Object.assign(process.env, { [key]: value });
-}
-const removeEnvVar = (key) => {
-  delete process.env[key];
-}
+const uploadcareLoader = require("../src/util/loader");
+const { addEnvVar, removeEnvVar } = require("./util");
 
 test("The loader validates the 'src' parameter", () => {
   addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
