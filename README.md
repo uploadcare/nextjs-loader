@@ -2,7 +2,7 @@
 
 **Please note the project is in active development and it's not ready for production just yet.**
 
-### Configuration
+## Configuration
 
 ```ini
 #.env
@@ -12,19 +12,12 @@ NEXT_PUBLIC_API_PARAMETERS="format/auto, stretch/off, progressive/yes"
 ```
 
 Default API parameters are:
- - format/auto 
- - stretch/off 
- - progressive/yes 
- - resize/[width]x 
- - quality/[quality]
+`format/auto, stretch/off, progressive/yes, resize/[width]x, quality/[quality]`  
+**The parameters set through NEXT_PUBLIC_API_PARAMETERS override corresponding default parameters and keep others in place.**
 
-All of these parameters can we overridden by setting NEXT_PUBLIC_API_PARAMETERS.
+## Usage
 
-See [Uploadcare Compression documentation](https://uploadcare.com/docs/transformations/image/compression/) for reference.
-
-### Usage
-
-1. User the `UploadcareImage` component and leave us the reset ;)
+1. Use the `UploadcareImage` component and leave us the reset ;)
 ```jsx
 import Image from 'next/image';
 import { UploadcareImage } from 'nextjs-loader';
@@ -49,3 +42,7 @@ import { uploadcareLoader } from 'nextjs-loader';
   loader={uploadcareLoader} 
 />
 ```
+
+## Links
+
+- [Uploadcare image compression documentation](https://uploadcare.com/docs/transformations/image/compression/)
