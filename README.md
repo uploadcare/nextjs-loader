@@ -17,7 +17,7 @@ Default API parameters are:
 
 ## Usage
 
-### Option 1. Use the `UploadcareImage` component and leave us the reset ;)
+**Option 1**. Use the `UploadcareImage` component and leave us the reset ;)
 ```jsx
 import Image from 'next/image';
 import { UploadcareImage } from 'nextjs-loader';
@@ -30,7 +30,7 @@ import { UploadcareImage } from 'nextjs-loader';
 ```
 The `UploadcareImage` component supports the same parameters as the Next `Image` component.
 
-### Option 2. Pass the `uploadcareLoader` function through `Image` component property:
+**Option 2**. Pass the `uploadcareLoader` function through `Image` component property:
 ```jsx
 import Image from 'next/image';
 import { uploadcareLoader } from 'nextjs-loader';
