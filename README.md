@@ -1,13 +1,13 @@
-# Uploadcare custom loader (and more) for Next.js
+# [In Development] Uploadcare custom loader (and more) for Next.js
 
-**Please note the project is in active development and it's not ready for production just yet.**
+**!!! Please note the project is in active development and it's not ready for production just yet.**
 
 ## Configuration
 
 ```ini
 #.env
 NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY="YOUR_PUBLIC_KEY"
-# Coma-separated list of API parameters.
+# A comma-separated list of API parameters.
 NEXT_PUBLIC_API_PARAMETERS="format/auto, stretch/off, progressive/yes"
 ```
 
@@ -32,7 +32,7 @@ import { UploadcareImage } from 'nextjs-loader';
 ```
 The `UploadcareImage` component supports the same parameters as the Next `Image` component.
 
-**Option 2**. Pass `uploadcareLoader` through `Image` component property
+**Option 2**. Pass `uploadcareLoader` through the `Image` component property
 ```jsx
 import Image from 'next/image';
 import { uploadcareLoader } from 'nextjs-loader';
