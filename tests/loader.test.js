@@ -1,6 +1,6 @@
 "use strict";
 
-const uploadcareLoader = require("../src/util/loader");
+const { uploadcareLoader } = require("../src");
 const { addEnvVar, removeEnvVar } = require("./util");
 
 test("The loader validates the 'src' parameter", () => {

@@ -1,5 +1,5 @@
-import { uploadcareLoader } from "./util/loader";
+const uploadcareLoader = require("./util/loader");
 
-export default {
+module.exports = {
   uploadcareLoader
 }
