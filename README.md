@@ -4,6 +4,7 @@
 
 **!!! Please note the project is in active development and it's not ready for production just yet.**
 
+* [Demo](#demo)
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Usage](#usage)
@@ -36,7 +37,7 @@ In case you're using a custom proxy, alternatively you can set its domain throug
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 ```
 
-That's it, you should be able to use the project through your code (see Usage section).
+That's it. You may now use `nextjs-loader` in your project (see Usage section).
 
 Below are optional parameters:
 
