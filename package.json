@@ -6,7 +6,7 @@
   "module": "src/index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack build"
+    "build": "webpack --env production build"
   },
   "repository": {
     "type": "git",
