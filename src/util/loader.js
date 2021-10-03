@@ -10,7 +10,9 @@ const {
   isCdnUrl, 
   generateDefaultProxyEndpoint, 
   parseUserParamsString, 
-  isDotenvParamEmpty 
+  isDotenvParamEmpty, 
+  getRequestedFormatFromParams,
+  isJpegExtension
 } = require("./helpers");
 
 function uploadcareLoader({ src, width, quality }) {
@@ -52,12 +54,15 @@ function uploadcareLoader({ src, width, quality }) {
     return isOnCdn ? src : `${root}${src}`;
   }
 
-  const qualityString = convertToUploadcareQualityString(quality);
-  const maxResizeWidth = getMaxResizeWidth(width);
-
   // Demo: https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/resize/300x/vercel.png
 
   const userParams = parseUserParamsString(userParamsString);
+
+  const requestedFormat = getRequestedFormatFromParams(userParams);
+  const qualityString = convertToUploadcareQualityString(quality);
+
+  const isJpeg = requestedFormat === 'jpeg' || (requestedFormat === 'auto' && isJpegExtension(extension));
+  const maxResizeWidth = getMaxResizeWidth(width, isJpeg);
 
   const basicParams = DEFAULT_PARAMS.concat([
     `resize/${maxResizeWidth}x`,

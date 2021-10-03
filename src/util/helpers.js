@@ -1,4 +1,4 @@
-const { MAX_OUTPUT_IMAGE_DIMENSION } = require("./constants");
+const { MAX_OUTPUT_IMAGE_DIMENSION, MAX_OUTPUT_JPEG_IMAGE_DIMENSION } = require("./constants");
 
 /**
  * Merge user parameters with default parameters, so that user parameters have higher priority.
@@ -29,6 +29,25 @@ function mergeParams(defaultParams, userParams) {
   }
 
   return resultParams;
+}
+
+/**
+ * Get requested image format from params, for example jpeg or auto.
+ * 
+ * @param {Array} userParams 
+ * @returns {string}
+ */
+ function getRequestedFormatFromParams(userParams) {
+  
+  for (let i = 0; i < userParams.length; i++) {
+    const [key, value] = _parseUploadcareTransformationParam(userParams[i]);
+
+    if (key === 'format') {
+      return value;
+    }
+  }
+
+  return 'auto';
 }
 
 function getExtension(filename) {
@@ -68,9 +87,14 @@ function convertToUploadcareQualityString(requestedQuality) {
  *
  * Output image dimension is limited to 3000px,
  * but it can be increased by explicitly setting /format/jpeg/ through API params.
+ * 
+ * @param {number} requestedWidth
+ * @param {boolean} isForJpeg
+ * @returns {number}
  */
-function getMaxResizeWidth(requestedWidth) {
-  return Math.min(Math.max(requestedWidth, 0), MAX_OUTPUT_IMAGE_DIMENSION);
+function getMaxResizeWidth(requestedWidth, isForJpeg = false) {
+  const maxDimension = isForJpeg ? MAX_OUTPUT_JPEG_IMAGE_DIMENSION : MAX_OUTPUT_IMAGE_DIMENSION;
+  return Math.min(Math.max(requestedWidth, 0), maxDimension);
 }
 
 function generateDefaultProxyEndpoint(publicKey) {
@@ -111,6 +135,10 @@ function _parseUploadcareTransformationParam(param) {
   return param.split('/');
 }
 
+function isJpegExtension(extension) {
+  return ['jpg', 'jpeg'].includes(extension.toLowerCase());
+}
+
 module.exports = {
   mergeParams,
   getExtension,
@@ -123,5 +151,7 @@ module.exports = {
   isCdnUrl,
   isProduction,
   parseUserParamsString,
-  isDotenvParamEmpty
+  isDotenvParamEmpty,
+  getRequestedFormatFromParams,
+  isJpegExtension
 };

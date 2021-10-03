@@ -164,3 +164,51 @@ test("The loader processes images hosted on a custom CDN domain properly", () =>
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN');
 });
+
+test("The loader sets max resolution for different formats properly", () => {
+  
+  addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
+
+  // Not a jpg image. Should be max 3000 width.
+
+  let src = "https:/example.com/image.png";
+
+  addEnvVar('NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS', 'format/auto');
+
+  let result = uploadcareLoader({
+    src,
+    width: "9999",
+    quality: 80,
+  });
+
+  expect(result).toBe('https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/3000x/-/quality/normal/https:/example.com/image.png');
+
+  // Jpg image by format. Should be max 5000 width.
+
+  addEnvVar('NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS', 'format/jpeg');
+
+  result = uploadcareLoader({
+    src,
+    width: "9999",
+    quality: 80,
+  });
+
+  expect(result).toBe('https://test-public-key.ucr.io/-/format/jpeg/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https:/example.com/image.png');
+
+  // // Jpg image by extension with auto format. Should be max 5000 width.
+
+  src = "https:/example.com/image.jpg";
+
+  addEnvVar('NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS', 'format/auto');
+
+  result = uploadcareLoader({
+    src,
+    width: "9999",
+    quality: 80,
+  });
+
+  expect(result).toBe('https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https:/example.com/image.jpg');
+
+  removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
+  removeEnvVar('NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS');
+});
