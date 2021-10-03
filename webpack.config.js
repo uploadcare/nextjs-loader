@@ -16,8 +16,8 @@ module.exports = (env) => {
     },
     externals: {
       "next": "next",
-      "react": "react",
       "next/image": "next/image",
+      "next/dist/client/image": "next/dist/client/image"
     },
     module: {
       rules: [
