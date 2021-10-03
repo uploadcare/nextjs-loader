@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Uploadcare custom loader (and more) for Next.js",
   "main": "dist/index.js",
-  "module": "src/index.js",
+  "module": "dist/index.js",
   "scripts": {
     "test": "jest",
     "build": "webpack --env production build"
