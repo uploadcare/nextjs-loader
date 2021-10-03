@@ -15,7 +15,6 @@ module.exports = (env) => {
       // },
     },
     externals: {
-      "next": "next",
       "next/image": "next/image",
     },
     module: {
