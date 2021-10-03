@@ -6,17 +6,38 @@
 
 TBD
 
+## Installation
+
+```shell_script
+yarn add nextjs-loader
+```
+
 ## Configuration
+
+Add the following setting to your `.env*` config file.
 
 ```ini
 #.env
-# Get it from Dashboard -> API Keys -> Public key or set a custom proxy domain.
 NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY="YOUR_PUBLIC_KEY"
+```
+
+You can find you public key in Dashboard -> API Keys -> Public key on Uplocadcare.
+In case you're using a custom proxy, alternatively you can set its domain through the config.
+
+```ini
+#.env
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
-# [Optional] A comma-separated list of API parameters.
-# default: format/auto, stretch/off, progressive/yes
+```
+
+That's it, you should be able to use the project through your code (see Usage section).
+
+Below are optional parameters.
+
+```ini
+#.env
+# A comma-separated list of API parameters. Default: format/auto, stretch/off, progressive/yes
 NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS="format/auto, stretch/off, progressive/yes"
-# [Optional] Default Uploadcare CDN domain is ucarecdn.com
+# Default Uploadcare CDN domain is ucarecdn.com
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 ```
 
