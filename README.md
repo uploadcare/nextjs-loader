@@ -22,15 +22,14 @@ yarn add nextjs-loader
 
 ## Configuration
 
-Add the following setting to your `.env*` config file:
+Add your public Uploadcare key to your `.env*` config file. You can copy it from Dashboard -> API Keys -> Public key.
 
 ```ini
 #.env
 NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY="YOUR_PUBLIC_KEY"
 ```
 
-You can find you public key in Dashboard -> API Keys -> Public key on Uplocadcare.  
-In case you're using a custom proxy, alternatively you can set its domain through the config.
+Alternatively, in case you're using a custom proxy, set the proxy domain.
 
 ```ini
 #.env
@@ -39,7 +38,7 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 
 That's it. You may now use `nextjs-loader` in your project (see Usage section).
 
-Below are optional parameters:
+Below are additional optional parameters which you may not need:
 
 ```ini
 #.env
