@@ -19,7 +19,7 @@ NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS="format/auto, stretch/off, prog
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 ```
 
-Default API parameters are:
+Default transformation parameters are:
 `format/auto, stretch/off, progressive/yes, resize/[width]x, quality/[quality]`  
 > Please note `NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS` override corresponding default parameters and keep others in place.
 

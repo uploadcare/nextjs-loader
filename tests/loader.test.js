@@ -61,8 +61,7 @@ test("The loader parses user paramters properly", () => {
 
   addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
 
-  // Using default params. No overrides.
-  removeEnvVar('NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS');
+  // No custom parameters.
 
   let result = uploadcareLoader({
     src,
@@ -83,6 +82,18 @@ test("The loader parses user paramters properly", () => {
   });
 
   expect(result).toBe('https://test-public-key.ucr.io/-/format/jpg/-/stretch/on/-/progressive/no/-/resize/1x/-/quality/smart_retina/https:/example.com/image.jpg');
+
+  // Add a new parameter (no defaults).
+
+  addEnvVar('NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS', 'new/parameter');
+
+  result = uploadcareLoader({
+    src,
+    width: "500",
+    quality: 80,
+  });
+
+  expect(result).toBe('https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/500x/-/quality/normal/-/new/parameter/https:/example.com/image.jpg');
 
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS');

@@ -13,10 +13,18 @@ function mergeParams(defaultParams, userParams) {
   for (let i = 0; i < userParams.length; i++) {
     const [userParam] = _parseUploadcareTransformationParam(userParams[i]);
 
+    let hasBeenReplaced = false;
     for (let j = 0; j < resultParams.length; j++) {
       if (resultParams[j].startsWith(userParam)) {
         resultParams[j] = userParams[i];
+        hasBeenReplaced = true;
+        break;
       }
+    }
+
+    // If the param is new, just add it.
+    if (!hasBeenReplaced) {
+      resultParams.push(userParams[i]);
     }
   }
 
