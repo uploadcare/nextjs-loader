@@ -5,6 +5,7 @@
 **!!! Please note the project is in active development and it's not ready for production just yet.**
 
 * [Demo](#demo)
+* [Dependencies](#dependencies)
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Usage](#usage)
@@ -13,6 +14,10 @@
 ## Demo
 
 TBD
+
+## Dependencies
+
+* Next.js >= 10.0.5
 
 ## Installation
 
