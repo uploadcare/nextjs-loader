@@ -14,11 +14,10 @@ module.exports = (env) => {
       //   type: "umd",
       // },
     },
-    externals: {
-      "next": "next",
-      "next/image": "next/image",
-      "next/dist/client/image": "next/dist/client/image"
-    },
+    // externals: {
+    //   "next": "next",
+    //   "next/image": "next/image",
+    // },
     module: {
       rules: [
         {

@@ -1,4 +1,4 @@
-# [In Development] Uploadcare custom loader (and more) for Next.js
+# [In Development] Uploadcare custom image loader for Next.js
 [![Build Status][build-img]][build-link]
 [![NPM version][npm-img]][npm-link]
 
@@ -19,7 +19,7 @@ The demo is live on [StackBlitz](http://stackblitz.com/):
 
 ## Dependencies
 
-* Next.js >= 10.0.5
+Next.js supports custom image loaders starting from 10.0.5.
 
 ## Installation
 
@@ -61,22 +61,8 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 
 ## Usage
 
-**Option 1**. Use the `UploadcareImage` component and leave us the reset ;)
-```jsx
-import Image from 'next/image';
-import { UploadcareImage } from 'nextjs-loader';
+Pass `uploadcareLoader` to the `Image` component:
 
-<UploadcareImage
-  alt="A test image"
-  src="https://your-domain/image.jpg"
-  width="400"
-  height="300"
-  quality="80"
-/>
-```
-The `UploadcareImage` component supports the same parameters as the Next `Image` component.
-
-**Option 2**. Pass `uploadcareLoader` through the `Image` component property
 ```jsx
 import Image from 'next/image';
 import { uploadcareLoader } from 'nextjs-loader';

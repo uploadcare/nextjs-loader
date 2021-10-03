@@ -41,14 +41,8 @@
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
     "jest": "^27.2.4",
-    "next": "^11.1.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "webpack": "^5.54.0",
     "webpack-cli": "^4.8.0"
   },
-  "peerDependencies": {
-    "next": ">=10.0.5",
-    "react": ">=17.0.0"
-  }
+  "peerDependencies": {}
 }
