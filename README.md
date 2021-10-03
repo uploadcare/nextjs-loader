@@ -15,7 +15,7 @@
 
 The demo is live on [StackBlitz](http://stackblitz.com/):
 
-[![Open in StackBlitz][stackblitz-image]]()
+[![Open in StackBlitz][stackblitz-image]][stackblitz-link]
 
 ## Dependencies
 
@@ -88,5 +88,5 @@ import { uploadcareLoader } from 'nextjs-loader';
 [npm-img]: https://img.shields.io/npm/v/nextjs-loader.svg
 [npm-link]: https://www.npmjs.com/package/nextjs-loader
 [stackblitz-image]: https://developer.stackblitz.com/img/open_in_stackblitz.svg
-[stackblitz-link]: https://stackblitz.com/github/kkomelin/nextjs-loader/tree/example
+[stackblitz-link]: https://stackblitz.com/github/kkomelin/nextjs-loader/tree/main/example
 [uploadcare-transformation-image-compression-docs]: https://uploadcare.com/docs/transformations/image/compression/?utm_source=github&utm_campaign=nextjs-loader
