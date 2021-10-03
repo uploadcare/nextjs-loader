@@ -7,8 +7,8 @@ cache:
   directories:
   - node_modules
 before_install:
-- npm update
+- yarn upgrade
 install:
-- npm install
+- yarn
 script:
-- npm test
+- yarn test

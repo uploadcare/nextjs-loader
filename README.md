@@ -89,8 +89,8 @@ import { uploadcareLoader } from 'nextjs-loader';
 - [Uploadcare File Uploader for React](https://github.com/uploadcare/react-widget)
 
 
-[build-img]: https://api.travis-ci.com/kkomelin/nextjs-loader.svg?branch=main
-[build-link]: https://travis-ci.com/kkomelin/nextjs-loader
+[build-img]: https://app.travis-ci.com/kkomelin/nextjs-loader.svg?branch=main
+[build-link]: https://api.travis-ci.com/kkomelin/nextjs-loader
 [npm-img]: https://img.shields.io/npm/v/nextjs-loader.svg
 [npm-link]: https://www.npmjs.com/package/nextjs-loader
 [uploadcare-transformation-image-compression-docs]: https://uploadcare.com/docs/transformations/image/compression/?utm_source=github&utm_campaign=nextjs-loader
