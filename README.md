@@ -13,7 +13,8 @@ TBD
 # Get it from Dashboard -> API Keys -> Public key or set a custom proxy domain.
 NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY="YOUR_PUBLIC_KEY"
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
-# [Optional] A comma-separated list of API parameters. Default: format/auto, stretch/off, progressive/yes
+# [Optional] A comma-separated list of API parameters.
+# default: format/auto, stretch/off, progressive/yes
 NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS="format/auto, stretch/off, progressive/yes"
 # [Optional] Default Uploadcare CDN domain is ucarecdn.com
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
