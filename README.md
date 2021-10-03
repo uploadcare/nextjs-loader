@@ -29,6 +29,16 @@ yarn add nextjs-loader
 
 ## Configuration
 
+Inform Next that you're going to use a custom image loader through `next.config.js`:
+
+```js
+module.exports = {
+  images: {
+    loader: "custom"
+  }
+}
+```
+
 Add your public Uploadcare key to your `.env*` config file. You can copy it from Dashboard -> API Keys -> Public key.
 
 ```ini

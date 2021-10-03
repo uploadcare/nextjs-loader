@@ -2,6 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['ucarecdn.com', 'assets.vercel.com']
+    // domains: ['ucarecdn.com', 'assets.vercel.com'],
+    loader: "custom"
   }
 }
