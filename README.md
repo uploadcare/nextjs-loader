@@ -1,6 +1,13 @@
 # [In Development] Uploadcare custom loader (and more) for Next.js
+[![Build Status][build-img]][build-link]
+[![NPM version][npm-img]][npm-link]
 
 **!!! Please note the project is in active development and it's not ready for production just yet.**
+
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Usage](#usage)
+* [Links](#links)
 
 ## Demo
 
@@ -14,14 +21,14 @@ yarn add nextjs-loader
 
 ## Configuration
 
-Add the following setting to your `.env*` config file.
+Add the following setting to your `.env*` config file:
 
 ```ini
 #.env
 NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY="YOUR_PUBLIC_KEY"
 ```
 
-You can find you public key in Dashboard -> API Keys -> Public key on Uplocadcare.
+You can find you public key in Dashboard -> API Keys -> Public key on Uplocadcare.  
 In case you're using a custom proxy, alternatively you can set its domain through the config.
 
 ```ini
@@ -31,13 +38,13 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 
 That's it, you should be able to use the project through your code (see Usage section).
 
-Below are optional parameters.
+Below are optional parameters:
 
 ```ini
 #.env
-# A comma-separated list of API parameters. Default: format/auto, stretch/off, progressive/yes
+# A comma-separated list of transformation parameters. Default: format/auto, stretch/off, progressive/yes
 NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS="format/auto, stretch/off, progressive/yes"
-# Default Uploadcare CDN domain is ucarecdn.com
+# Uploadcare CDN domain. Default: ucarecdn.com
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 ```
 
@@ -77,5 +84,12 @@ import { uploadcareLoader } from 'nextjs-loader';
 
 ## Links
 
-- [Uploadcare image compression documentation](https://uploadcare.com/docs/transformations/image/compression/)
+- [Uploadcare image compression documentation][uploadcare-transformation-image-compression-docs]
 - [Uploadcare File Uploader for React](https://github.com/uploadcare/react-widget)
+
+
+[build-img]: https://api.travis-ci.com/kkomelin/nextjs-loader.svg?branch=main
+[build-link]: https://travis-ci.com/kkomelin/nextjs-loader
+[npm-img]: https://img.shields.io/npm/v/nextjs-loader.svg
+[npm-link]: https://www.npmjs.com/package/nextjs-loader
+[uploadcare-transformation-image-compression-docs]: https://uploadcare.com/docs/transformations/image/compression/?utm_source=github&utm_campaign=nextjs-loader
