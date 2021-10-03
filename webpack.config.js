@@ -14,9 +14,9 @@ module.exports = (env) => {
       //   type: "umd",
       // },
     },
-    externals: {
-      "next/image": "next/image",
-    },
+    // externals: {
+    //   "next/image": "next/image",
+    // },
     module: {
       rules: [
         {
