@@ -17,7 +17,8 @@ function uploadcareLoader({ src, width, quality }) {
   const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
   const userParamsString = process.env.NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS || '';
   const cdnDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN || DEFAULT_CDN_DOMAIN;
-  const customProxyEndpoint = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT || null;
+  const customProxyDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN || null;
+  const customProxyEndpoint = customProxyDomain ? generateDefaultProxyEndpoint(customProxyDomain) : null;
   const proxyEndpoint = customProxyEndpoint || generateDefaultProxyEndpoint(publicKey)
 
   const root = trimTrailingSlash(proxyEndpoint);
@@ -31,7 +32,7 @@ function uploadcareLoader({ src, width, quality }) {
 
     if (!isPublicKeySet && !isCustomProxyEndpointSet) {
       throw new Error(
-        `Both NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY and NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT are not set. Please set either one.`
+        `Both NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY and NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN are not set. Please set either one.`
       );
     }
 

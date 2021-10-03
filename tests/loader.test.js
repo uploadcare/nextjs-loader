@@ -23,12 +23,12 @@ test("The loader validates the 'src' parameter", () => {
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
 });
 
-test("The loader requires either NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY or NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT", () => {
+test("The loader requires either a public key or a custom proxy domain", () => {
 
   const errorMessage = 
-    'Both NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY and NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT are not set. Please set either one.';
+    'Both NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY and NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN are not set. Please set either one.';
 
-  // 1. The custom proxy endpoint and public key are not set.
+  // 1. The custom proxy domain and public key are not set.
 
   const t = () => {
     uploadcareLoader({
@@ -39,7 +39,7 @@ test("The loader requires either NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY or NEXT_PUBLI
   };
   expect(t).toThrow(errorMessage);
 
-  // 2. The public key is set and the custom proxy endpoint is not set.
+  // 2. The public key is set and the custom proxy domain is not set.
 
   addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
 
@@ -47,13 +47,13 @@ test("The loader requires either NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY or NEXT_PUBLI
 
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
 
-  // 3. The custom proxy endpoint is set and the public key is not set.
+  // 3. The custom proxy domain is set and the public key is not set.
 
-  addEnvVar('NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT', 'https://proxy.example.com');
+  addEnvVar('NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN', 'https://proxy.example.com');
 
   expect(t).not.toThrow(errorMessage);
 
-  removeEnvVar('NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT');
+  removeEnvVar('NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN');
 });
 
 test("The loader parses user paramters properly", () => {
@@ -120,7 +120,7 @@ test("The loader returns SVG and GIF hosted on the CDN as is", () => {
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
 });
 
-test("The loader handles an image hosted on the default CDN domain properly", () => {
+test("The loader processes images hosted on the default CDN domain properly", () => {
   const src = "https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png";
 
   addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
@@ -136,7 +136,7 @@ test("The loader handles an image hosted on the default CDN domain properly", ()
   removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
 });
 
-test("The loader handles an image hosted on a custom CDN domain properly", () => {
+test("The loader processes images hosted on a custom CDN domain properly", () => {
   const src = "https://cdn.example.com/image.png";
 
   addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');

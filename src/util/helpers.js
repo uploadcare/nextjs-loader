@@ -69,6 +69,10 @@ function generateDefaultProxyEndpoint(publicKey) {
   return `https://${publicKey}.ucr.io`;
 }
 
+function generateCustomProxyEndpoint(customProxyDomain) {
+  return `https://${customProxyDomain}`;
+}
+
 function isCdnUrl(url, cdnDomain) {
   const escapedCdnDomain = cdnDomain.replace('.', '\.');
 
@@ -107,6 +111,7 @@ module.exports = {
   convertToUploadcareQualityString,
   getMaxResizeWidth,
   generateDefaultProxyEndpoint,
+  generateCustomProxyEndpoint,
   isCdnUrl,
   isProduction,
   parseUserParamsString,
