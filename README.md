@@ -36,7 +36,9 @@ Alternatively, in case you're using a custom proxy, set the proxy domain.
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 ```
 
-That's it. You may now use `nextjs-loader` in your project (see Usage section).
+That's it. You may now use `nextjs-loader` in your project (see [Usage](#usage)).
+
+---
 
 Below are additional optional parameters which you may not need:
 
