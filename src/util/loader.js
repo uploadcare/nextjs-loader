@@ -1,20 +1,37 @@
-const { DEFAULT_PARAMS, NOT_PROCESSED_EXTENSIONS } = require("./constants");
-const { trimTrailingSlash, mergeParams, getMaxResizeWidth, convertToUploadcareQualityString, getFilename, getExtension, isProduction, isCdnUrl, getProxyEndpoint, parseUserParamsString } = require("./helpers");
+const { DEFAULT_PARAMS, NOT_PROCESSED_EXTENSIONS, DEFAULT_CDN_DOMAIN } = require("./constants");
+const { 
+  trimTrailingSlash, 
+  mergeParams, 
+  getMaxResizeWidth, 
+  convertToUploadcareQualityString, 
+  getFilename, 
+  getExtension, 
+  isProduction, 
+  isCdnUrl, 
+  generateDefaultProxyEndpoint, 
+  parseUserParamsString, 
+  isDotenvParamEmpty 
+} = require("./helpers");
 
 function uploadcareLoader({ src, width, quality }) {
   const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
   const userParamsString = process.env.NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS || '';
-  const cdnDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CDN_DOMAIN || 'ucarecdn.com';
+  const cdnDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN || DEFAULT_CDN_DOMAIN;
+  const customProxyEndpoint = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT || null;
+  const proxyEndpoint = customProxyEndpoint || generateDefaultProxyEndpoint(publicKey)
 
-  const root = getProxyEndpoint(publicKey);
+  const root = trimTrailingSlash(proxyEndpoint);
 
   const isOnCdn = isCdnUrl(src, cdnDomain);
 
   if (!isProduction() && !isOnCdn) {
 
-    if (publicKey == null || publicKey == "") {
+    const isPublicKeySet = !isDotenvParamEmpty(publicKey);
+    const isCustomProxyEndpointSet = !isDotenvParamEmpty(customProxyEndpoint);
+
+    if (!isPublicKeySet && !isCustomProxyEndpointSet) {
       throw new Error(
-        `The NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY is not set.`
+        `Both NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY and NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT are not set. Please set either one.`
       );
     }
 
@@ -30,8 +47,8 @@ function uploadcareLoader({ src, width, quality }) {
 
   // Some extensions are not processed by Uploadcare, e.g. SVG.
   if (NOT_PROCESSED_EXTENSIONS.includes(extension)) {
-    // @fixme: Fix the non-CDN url
-    return isOnCdn ? src : `${trimTrailingSlash(root)}${src}`;
+    // @todo: Test non-CDN urls.
+    return isOnCdn ? src : `${root}${src}`;
   }
 
   const qualityString = convertToUploadcareQualityString(quality);
@@ -55,7 +72,7 @@ function uploadcareLoader({ src, width, quality }) {
     return `${withoutFilename}${apiParamsString}${filename}`;
   }
 
-  return `${trimTrailingSlash(root)}${apiParamsString}${src}`;
+  return `${root}${apiParamsString}${src}`;
 }
 
 module.exports = uploadcareLoader;

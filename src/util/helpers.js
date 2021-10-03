@@ -11,7 +11,7 @@ function mergeParams(defaultParams, userParams) {
   let resultParams = defaultParams;
 
   for (let i = 0; i < userParams.length; i++) {
-    const [userParam] = _parseParam(userParams[i]);
+    const [userParam] = _parseUploadcareTransformationParam(userParams[i]);
 
     for (let j = 0; j < resultParams.length; j++) {
       if (resultParams[j].startsWith(userParam)) {
@@ -65,8 +65,7 @@ function getMaxResizeWidth(requestedWidth) {
   return Math.min(Math.max(requestedWidth, 0), MAX_OUTPUT_IMAGE_DIMENSION);
 }
 
-function getProxyEndpoint(publicKey) {
-  // @todo: Take into account the possibility to set a custom domain for the proxy.
+function generateDefaultProxyEndpoint(publicKey) {
   return `https://${publicKey}.ucr.io`;
 }
 
@@ -92,7 +91,11 @@ function parseUserParamsString(paramsString) {
   return params.map((param) => param.trim());
 }
 
-function _parseParam(param) {
+function isDotenvParamEmpty(param) {
+  return param == null || param.trim() === "";
+}
+
+function _parseUploadcareTransformationParam(param) {
   return param.split('/');
 }
 
@@ -103,8 +106,9 @@ module.exports = {
   trimTrailingSlash,
   convertToUploadcareQualityString,
   getMaxResizeWidth,
-  getProxyEndpoint,
+  generateDefaultProxyEndpoint,
   isCdnUrl,
   isProduction,
   parseUserParamsString,
+  isDotenvParamEmpty
 };

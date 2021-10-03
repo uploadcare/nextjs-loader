@@ -2,16 +2,21 @@
 
 **!!! Please note the project is in active development and it's not ready for production just yet.**
 
+## Demo
+
+TBD
+
 ## Configuration
 
 ```ini
 #.env
 # Get it from Dashboard -> API Keys -> Public key
 NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY="YOUR_PUBLIC_KEY"
+NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_ENDPOINT="https://proxy.example.com"
 # A comma-separated list of API parameters
 NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS="format/auto, stretch/off, progressive/yes"
 # Default Uploadcare CDN domain is ucarecdn.com
-NEXT_PUBLIC_UPLOADCARE_CDN_DOMAIN="cdn.example.com"
+NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 ```
 
 Default API parameters are:
