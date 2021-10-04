@@ -7,7 +7,7 @@ const image_1 = __importDefault(require("next/image"));
 const react_1 = __importDefault(require("react"));
 const __1 = require("..");
 const UploadcareImage = (props) => {
-    return (react_1.default.createElement(image_1.default, Object.assign({ loader: __1.uploadcareLoader }, props)));
+    return react_1.default.createElement(image_1.default, Object.assign({ loader: __1.uploadcareLoader }, props));
 };
 exports.default = UploadcareImage;
 module.exports = exports["default"];

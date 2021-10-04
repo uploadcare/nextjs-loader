@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { uploadcareLoader } from 'nextjs-loader';
+import { UploadcareImage, uploadcareLoader } from 'nextjs-loader';
 import { FC } from 'react';
 import styles from '../styles/Home.module.css';
 
@@ -28,6 +28,16 @@ const Home: NextPage = () => (
         src="https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png"
         width={1000}
         height={1000}
+      />
+      <hr className={styles.hr} />
+      <p>
+        The following is an example of use of the <Code>UploadcareImage</Code> helper component.
+      </p>
+      <UploadcareImage
+        alt="Vercel logo"
+        src="https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png"
+        width={500}
+        height={500}
       />
       <hr className={styles.hr} />
       <p>

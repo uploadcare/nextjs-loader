@@ -5,6 +5,7 @@
 **!!! Please note the project is in active development and it's not ready for production just yet.**
 
 * [Demo](#demo)
+* [Preview](#preview)
 * [Dependencies](#dependencies)
 * [Installation](#installation)
 * [Configuration](#configuration)
@@ -13,7 +14,11 @@
 
 ## Demo
 
-The demo is live on [StackBlitz](http://stackblitz.com/):
+Look at the demo [here][demo-link].
+
+## Preview
+
+Preview it on [StackBlitz](http://stackblitz.com/):
 
 [![Open in StackBlitz][stackblitz-image]][stackblitz-link]
 
@@ -72,8 +77,7 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 ## Usage
 
 **Option 1**. Use the `UploadcareImage` component and leave us the reset ;)
-```jsx
-import Image from 'next/image';
+```tsx
 import { UploadcareImage } from 'nextjs-loader';
 
 <UploadcareImage
@@ -88,7 +92,7 @@ The `UploadcareImage` component supports the same parameters as the Next `Image`
 
 **Option 2**. Pass `uploadcareLoader` to the `Image` component:
 
-```jsx
+```tsx
 import Image from 'next/image';
 import { uploadcareLoader } from 'nextjs-loader';
 
@@ -102,6 +106,55 @@ import { uploadcareLoader } from 'nextjs-loader';
 />
 ```
 
+**Option 3**. Use [next-image-loader](https://www.npmjs.com/package/next-image-loader) project to enable Uploadcare image loader for all app `Image`-s by default
+
+In that case, you may not need the `loader: "custom"` setting in your `next.config.js`.
+
+1. Install the [next-image-loader](https://www.npmjs.com/package/next-image-loader) plugin and enable it as described in its README. 
+
+2. Create `image-loader.config.js` in the project root (in the same directory as `next.config.js`)
+and add this code to it:
+
+```js
+// image-loader.config.js
+import { imageLoader } from 'next-image-loader/build/image-loader';
+import { uploadcareLoader } from 'nextjs-loader';
+
+imageLoader.loader = uploadcareLoader;
+```
+
+3. Use `Image` as usual, with Uploadcare loader enabled implicitly:
+
+```tsx
+import Image from 'next/image';
+
+<Image 
+  alt="A test image"
+  src="https://your-domain/image.jpg"
+  width="400"
+  height="300"
+  quality="80"
+/>
+```
+
+Please note that you can still use any other loader for a separate image like this:
+
+```tsx
+import Image from 'next/image';
+import anotherLoader from '[another-loader-project-name]';
+
+<Image 
+  alt="A test image"
+  src="https://your-domain/image.jpg"
+  width="400"
+  height="300"
+  quality="80"
+  loader={anotherLoader}
+/>
+```
+
+where `anotherLoader` will be used instead of the Uploadcare loader for this particular image.
+
 ## Links
 
 - [Uploadcare image compression documentation][uploadcare-transformation-image-compression-docs]
@@ -114,4 +167,5 @@ import { uploadcareLoader } from 'nextjs-loader';
 [npm-link]: https://www.npmjs.com/package/nextjs-loader
 [stackblitz-image]: https://developer.stackblitz.com/img/open_in_stackblitz.svg
 [stackblitz-link]: https://stackblitz.com/github/kkomelin/nextjs-loader/tree/main/example
+[demo-link]: https://nextjs-loader.vercel.app/
 [uploadcare-transformation-image-compression-docs]: https://uploadcare.com/docs/transformations/image/compression/?utm_source=github&utm_campaign=nextjs-loader
