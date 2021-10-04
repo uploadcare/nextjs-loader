@@ -1,21 +1,9 @@
-const { DEFAULT_PARAMS, NOT_PROCESSED_EXTENSIONS, DEFAULT_CDN_DOMAIN } = require("./constants");
-const { 
-  trimTrailingSlash, 
-  mergeParams, 
-  getMaxResizeWidth, 
-  convertToUploadcareQualityString, 
-  getFilename, 
-  getExtension, 
-  isProduction, 
-  isCdnUrl, 
-  generateDefaultProxyEndpoint, 
-  parseUserParamsString, 
-  isDotenvParamEmpty, 
-  getRequestedFormatFromParams,
-  isJpegExtension
-} = require("./helpers");
+import { ImageLoader, ImageLoaderProps } from 'next/image';
+import { DEFAULT_CDN_DOMAIN, DEFAULT_PARAMS, NOT_PROCESSED_EXTENSIONS } from './constants';
+import { convertToUploadcareQualityString, generateDefaultProxyEndpoint, getExtension, getFilename, getMaxResizeWidth, getRequestedFormatFromParams, isCdnUrl, isDotenvParamEmpty, isJpegExtension, isProduction, mergeParams, parseUserParamsString, trimTrailingSlash } from './helpers';
 
-function uploadcareLoader({ src, width, quality }) {
+const uploadcareLoader: ImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+
   const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
   const userParamsString = process.env.NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS || '';
   const cdnDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN || DEFAULT_CDN_DOMAIN;
@@ -81,4 +69,4 @@ function uploadcareLoader({ src, width, quality }) {
   return `${root}${apiParamsString}${src}`;
 }
 
-module.exports = uploadcareLoader;
+export default uploadcareLoader;

@@ -102,3 +102,7 @@ typings/
 
 # TernJS port file
 .tern-port
+
+# Project-secific.
+coverage
+build

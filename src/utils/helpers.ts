@@ -1,14 +1,14 @@
-const { MAX_OUTPUT_IMAGE_DIMENSION, MAX_OUTPUT_JPEG_IMAGE_DIMENSION } = require("./constants");
+import { MAX_OUTPUT_IMAGE_DIMENSION, MAX_OUTPUT_JPEG_IMAGE_DIMENSION } from "./constants";
 
 /**
  * Merge user parameters with default parameters, so that user parameters have higher priority.
  * 
- * @param {Array} defaultParams 
- * @param {Array} userParams 
- * @returns {Array}
+ * @param {string[]} defaultParams 
+ * @param {string[]} userParams 
+ * @returns {string[]}
  */
-function mergeParams(defaultParams, userParams) {
-  let resultParams = defaultParams;
+export function mergeParams(defaultParams: string[], userParams: string[]): string[] {
+  const resultParams = defaultParams;
 
   for (let i = 0; i < userParams.length; i++) {
     const [userParam] = _parseUploadcareTransformationParam(userParams[i]);
@@ -34,10 +34,10 @@ function mergeParams(defaultParams, userParams) {
 /**
  * Get requested image format from params, for example jpeg or auto.
  * 
- * @param {Array} userParams 
+ * @param {string[]} userParams 
  * @returns {string}
  */
- function getRequestedFormatFromParams(userParams) {
+export function getRequestedFormatFromParams(userParams: string[]): string {
   
   for (let i = 0; i < userParams.length; i++) {
     const [key, value] = _parseUploadcareTransformationParam(userParams[i]);
@@ -50,22 +50,22 @@ function mergeParams(defaultParams, userParams) {
   return 'auto';
 }
 
-function getExtension(filename) {
+export function getExtension(filename: string): string {
   return filename.toLowerCase()
     .split("?")[0]
     .split("#")[0]
     .split(".")[1];
 }
 
-function getFilename(url) {
+export function getFilename(url: string): string {
   return url.substring(1 + url.lastIndexOf("/"));
 }
 
-function trimTrailingSlash(url) {
+export function trimTrailingSlash(url:string):string {
   return url.replace(/\/$/, "");
 }
 
-function convertToUploadcareQualityString(requestedQuality) {
+export function convertToUploadcareQualityString(requestedQuality?: number): string {
   // If any particular quality has not been requested, we use the smart quality mode.
   if (!requestedQuality) {
     return "smart";
@@ -92,32 +92,34 @@ function convertToUploadcareQualityString(requestedQuality) {
  * @param {boolean} isForJpeg
  * @returns {number}
  */
-function getMaxResizeWidth(requestedWidth, isForJpeg = false) {
+export function getMaxResizeWidth(requestedWidth: number, isForJpeg = false): number {
   const maxDimension = isForJpeg ? MAX_OUTPUT_JPEG_IMAGE_DIMENSION : MAX_OUTPUT_IMAGE_DIMENSION;
   return Math.min(Math.max(requestedWidth, 0), maxDimension);
 }
 
-function generateDefaultProxyEndpoint(publicKey) {
+export function generateDefaultProxyEndpoint(publicKey: string | null): string {
   return `https://${publicKey}.ucr.io`;
 }
 
-function generateCustomProxyEndpoint(customProxyDomain) {
+export function generateCustomProxyEndpoint(customProxyDomain: string): string {
   return `https://${customProxyDomain}`;
 }
 
-function isCdnUrl(url, cdnDomain) {
-  const escapedCdnDomain = cdnDomain.replace('.', '\.');
+export function isCdnUrl(url: string, cdnDomain: string): boolean {
+  //eslint-disable-next-line
+  const escapedCdnDomain = cdnDomain.replace('.', "\.");
 
+  //eslint-disable-next-line
   const regexp = new RegExp(`^https?:\/\/${escapedCdnDomain}`);
 
   return regexp.test(url);
 }
 
-function isProduction() {
+export function isProduction(): boolean {
   return process.env.NODE_ENV === "production";
 }
 
-function parseUserParamsString(paramsString) {
+export function parseUserParamsString(paramsString?: string): string[] {
   if (paramsString == null || paramsString === "") {
     return [];
   }
@@ -127,31 +129,14 @@ function parseUserParamsString(paramsString) {
   return params.map((param) => param.trim());
 }
 
-function isDotenvParamEmpty(param) {
+export function isDotenvParamEmpty(param: string | null): boolean {
   return param == null || param.trim() === "";
 }
 
-function _parseUploadcareTransformationParam(param) {
+function _parseUploadcareTransformationParam(param: string): string[] {
   return param.split('/');
 }
 
-function isJpegExtension(extension) {
+export function isJpegExtension(extension: string): boolean {
   return ['jpg', 'jpeg'].includes(extension.toLowerCase());
 }
-
-module.exports = {
-  mergeParams,
-  getExtension,
-  getFilename,
-  trimTrailingSlash,
-  convertToUploadcareQualityString,
-  getMaxResizeWidth,
-  generateDefaultProxyEndpoint,
-  generateCustomProxyEndpoint,
-  isCdnUrl,
-  isProduction,
-  parseUserParamsString,
-  isDotenvParamEmpty,
-  getRequestedFormatFromParams,
-  isJpegExtension
-};
