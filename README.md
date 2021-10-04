@@ -38,6 +38,7 @@ yarn add nextjs-loader
 Inform Next that you're going to use a custom image loader through `next.config.js`:
 
 ```js
+// next.config.js
 module.exports = {
   images: {
     loader: "custom"
@@ -107,7 +108,7 @@ import { uploadcareLoader } from 'nextjs-loader';
 />
 ```
 
-**Option 3**. Use [next-image-loader](https://www.npmjs.com/package/next-image-loader) project to enable Uploadcare image loader for all app `Image`-s by default
+**Option 3**. Use [next-image-loader](https://www.npmjs.com/package/next-image-loader) project to enable Uploadcare image loader for all images by default
 
 In that case, you may not need the `loader: "custom"` setting in your `next.config.js`.
 
