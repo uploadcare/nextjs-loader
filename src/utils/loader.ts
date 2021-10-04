@@ -1,22 +1,48 @@
 import { ImageLoader, ImageLoaderProps } from 'next/image';
-import { DEFAULT_CDN_DOMAIN, DEFAULT_PARAMS, NOT_PROCESSED_EXTENSIONS } from './constants';
-import { convertToUploadcareQualityString, generateDefaultProxyEndpoint, getExtension, getFilename, getMaxResizeWidth, getRequestedFormatFromParams, isCdnUrl, isDotenvParamEmpty, isJpegExtension, isProduction, mergeParams, parseUserParamsString, trimTrailingSlash } from './helpers';
+import {
+  DEFAULT_CDN_DOMAIN,
+  DEFAULT_PARAMS,
+  NOT_PROCESSED_EXTENSIONS
+} from './constants';
+import {
+  convertToUploadcareQualityString,
+  generateDefaultProxyEndpoint,
+  getExtension,
+  getFilename,
+  getMaxResizeWidth,
+  getRequestedFormatFromParams,
+  isCdnUrl,
+  isDotenvParamEmpty,
+  isJpegExtension,
+  isProduction,
+  mergeParams,
+  parseUserParamsString,
+  trimTrailingSlash
+} from './helpers';
 
-const uploadcareLoader: ImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-
+const uploadcareLoader: ImageLoader = ({
+  src,
+  width,
+  quality
+}: ImageLoaderProps) => {
   const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
-  const userParamsString = process.env.NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS || '';
-  const cdnDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN || DEFAULT_CDN_DOMAIN;
-  const customProxyDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN || null;
-  const customProxyEndpoint = customProxyDomain ? generateDefaultProxyEndpoint(customProxyDomain) : null;
-  const proxyEndpoint = customProxyEndpoint || generateDefaultProxyEndpoint(publicKey)
+  const userParamsString =
+    process.env.NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS || '';
+  const cdnDomain =
+    process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN || DEFAULT_CDN_DOMAIN;
+  const customProxyDomain =
+    process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN || null;
+  const customProxyEndpoint = customProxyDomain
+    ? generateDefaultProxyEndpoint(customProxyDomain)
+    : null;
+  const proxyEndpoint =
+    customProxyEndpoint || generateDefaultProxyEndpoint(publicKey);
 
   const root = trimTrailingSlash(proxyEndpoint);
 
   const isOnCdn = isCdnUrl(src, cdnDomain);
 
   if (!isProduction() && !isOnCdn) {
-
     const isPublicKeySet = !isDotenvParamEmpty(publicKey);
     const isCustomProxyEndpointSet = !isDotenvParamEmpty(customProxyEndpoint);
 
@@ -26,7 +52,7 @@ const uploadcareLoader: ImageLoader = ({ src, width, quality }: ImageLoaderProps
       );
     }
 
-    if (src.startsWith("/")) {
+    if (src.startsWith('/')) {
       throw new Error(
         `Failed to parse "${src}" in "uploadcareLoader", Uploadcare loader doesn't support relative images.`
       );
@@ -49,7 +75,9 @@ const uploadcareLoader: ImageLoader = ({ src, width, quality }: ImageLoaderProps
   const requestedFormat = getRequestedFormatFromParams(userParams);
   const qualityString = convertToUploadcareQualityString(quality);
 
-  const isJpeg = requestedFormat === 'jpeg' || (requestedFormat === 'auto' && isJpegExtension(extension));
+  const isJpeg =
+    requestedFormat === 'jpeg' ||
+    (requestedFormat === 'auto' && isJpegExtension(extension));
   const maxResizeWidth = getMaxResizeWidth(width, isJpeg);
 
   const basicParams = DEFAULT_PARAMS.concat([
@@ -59,14 +87,14 @@ const uploadcareLoader: ImageLoader = ({ src, width, quality }: ImageLoaderProps
 
   const params = mergeParams(basicParams, userParams);
 
-  const apiParamsString = "/-/" + params.join("/-/") + "/";
+  const apiParamsString = '/-/' + params.join('/-/') + '/';
 
   if (isOnCdn) {
-    const withoutFilename = src.slice(0, src.lastIndexOf("/"));
+    const withoutFilename = src.slice(0, src.lastIndexOf('/'));
     return `${withoutFilename}${apiParamsString}${filename}`;
   }
 
   return `${root}${apiParamsString}${src}`;
-}
+};
 
 export default uploadcareLoader;
