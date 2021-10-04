@@ -2092,10 +2092,6 @@ next@11.1.2:
     "@next/swc-linux-x64-gnu" "11.1.2"
     "@next/swc-win32-x64-msvc" "11.1.2"
 
-nextjs-loader@kkomelin/nextjs-loader:
-  version "0.1.0"
-  resolved "https://codeload.github.com/kkomelin/nextjs-loader/tar.gz/2e640699f3995a76e1d734143d65b026bc5dc87a"
-
 node-fetch@2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
@@ -3147,6 +3143,11 @@ unpipe@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
+
+uploadcare-nextjs-loader@*:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/uploadcare-nextjs-loader/-/uploadcare-nextjs-loader-0.1.0.tgz#e584f1fb4e22712e5ab43b56ca6477180f2ffa04"
+  integrity sha512-u0ZsZKWmOQ3IT98niqANyqkRSBWkHxBbhyEzIIbzCWRTCd2VMBb6egQ3+g1pi5cGTnJYxgy4RCAI4r/D3J9jyQ==
 
 uri-js@^4.2.2:
   version "4.4.1"
