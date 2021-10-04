@@ -164,7 +164,7 @@ where `anotherLoader` will be used instead of the Uploadcare loader for this par
 
 ## Known Issues
 
-**Issue 1:** Console warnings like this: 
+**Issue 1:** Console warning like this: 
 > Image with src "${src}" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
 Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
 
