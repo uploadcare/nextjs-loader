@@ -1,4 +1,4 @@
-import { ImageLoader, ImageLoaderProps } from 'next/image';
+import { ImageLoaderProps } from 'next/image';
 import {
   DEFAULT_CDN_DOMAIN,
   DEFAULT_PARAMS,
@@ -20,11 +20,11 @@ import {
   trimTrailingSlash
 } from './helpers';
 
-const uploadcareLoader: ImageLoader = ({
+export default function uploadcareLoader({
   src,
   width,
   quality
-}: ImageLoaderProps) => {
+}: ImageLoaderProps): string {
   const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
   const userParamsString =
     process.env.NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS || '';
@@ -95,6 +95,4 @@ const uploadcareLoader: ImageLoader = ({
   }
 
   return `${root}${apiParamsString}${src}`;
-};
-
-export default uploadcareLoader;
+}

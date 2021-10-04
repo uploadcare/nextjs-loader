@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("./constants");
 const helpers_1 = require("./helpers");
-const uploadcareLoader = ({ src, width, quality }) => {
+function uploadcareLoader({ src, width, quality }) {
     const publicKey = process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY || null;
     const userParamsString = process.env.NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS || '';
     const cdnDomain = process.env.NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN || constants_1.DEFAULT_CDN_DOMAIN;
@@ -48,6 +48,6 @@ const uploadcareLoader = ({ src, width, quality }) => {
         return `${withoutFilename}${apiParamsString}${filename}`;
     }
     return `${root}${apiParamsString}${src}`;
-};
+}
 exports.default = uploadcareLoader;
 module.exports = exports["default"];

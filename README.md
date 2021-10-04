@@ -80,7 +80,7 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 
 **Option 1**. Use the `UploadcareImage` component and leave us the reset ;)
 ```tsx
-import { UploadcareImage } from 'nextjs-loader';
+import UploadcareImage from 'nextjs-loader';
 
 <UploadcareImage
   alt="A test image"

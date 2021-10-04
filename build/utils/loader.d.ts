@@ -1,3 +1,2 @@
-import { ImageLoader } from 'next/image';
-declare const uploadcareLoader: ImageLoader;
-export default uploadcareLoader;
+import { ImageLoaderProps } from 'next/image';
+export default function uploadcareLoader({ src, width, quality }: ImageLoaderProps): string;

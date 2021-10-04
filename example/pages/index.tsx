@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { UploadcareImage, uploadcareLoader } from 'nextjs-loader';
+import UploadcareImage, { uploadcareLoader } from 'nextjs-loader';
 import { FC } from 'react';
 import styles from '../styles/Home.module.css';
 
