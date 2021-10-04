@@ -71,7 +71,22 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 
 ## Usage
 
-Pass `uploadcareLoader` to the `Image` component:
+**Option 1**. Use the `UploadcareImage` component and leave us the reset ;)
+```jsx
+import Image from 'next/image';
+import { UploadcareImage } from 'nextjs-loader';
+
+<UploadcareImage
+  alt="A test image"
+  src="https://your-domain/image.jpg"
+  width="400"
+  height="300"
+  quality="80"
+/>
+```
+The `UploadcareImage` component supports the same parameters as the Next `Image` component.
+
+**Option 2**. Pass `uploadcareLoader` to the `Image` component:
 
 ```jsx
 import Image from 'next/image';
