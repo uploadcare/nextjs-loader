@@ -2094,7 +2094,7 @@ next@11.1.2:
 
 nextjs-loader@kkomelin/nextjs-loader:
   version "0.1.0"
-  resolved "https://codeload.github.com/kkomelin/nextjs-loader/tar.gz/4f174b5fc3ebc79419e6e05d17a216aa0c800a32"
+  resolved "https://codeload.github.com/kkomelin/nextjs-loader/tar.gz/2e640699f3995a76e1d734143d65b026bc5dc87a"
 
 node-fetch@2.6.1:
   version "2.6.1"
