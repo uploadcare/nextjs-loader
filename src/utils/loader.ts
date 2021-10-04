@@ -20,7 +20,7 @@ import {
   trimTrailingSlash
 } from './helpers';
 
-export default function uploadcareLoader({
+export function uploadcareLoader({
   src,
   width,
   quality

@@ -122,10 +122,10 @@ function isDotenvParamEmpty(param) {
     return param == null || param.trim() === '';
 }
 exports.isDotenvParamEmpty = isDotenvParamEmpty;
-function _parseUploadcareTransformationParam(param) {
-    return param.split('/');
-}
 function isJpegExtension(extension) {
     return ['jpg', 'jpeg'].includes(extension.toLowerCase());
 }
 exports.isJpegExtension = isJpegExtension;
+function _parseUploadcareTransformationParam(param) {
+    return param.split('/');
+}

@@ -142,10 +142,10 @@ export function isDotenvParamEmpty(param: string | null): boolean {
   return param == null || param.trim() === '';
 }
 
-function _parseUploadcareTransformationParam(param: string): string[] {
-  return param.split('/');
-}
-
 export function isJpegExtension(extension: string): boolean {
   return ['jpg', 'jpeg'].includes(extension.toLowerCase());
+}
+
+function _parseUploadcareTransformationParam(param: string): string[] {
+  return param.split('/');
 }

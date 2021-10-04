@@ -1,5 +1,5 @@
 import { cleanup } from '@testing-library/react';
-import uploadcareLoader from '../utils/loader';
+import { uploadcareLoader } from '../utils/loader';
 import { addEnvVar, removeEnvVar } from './utils';
 
 describe('uploadcareLoader', () => {

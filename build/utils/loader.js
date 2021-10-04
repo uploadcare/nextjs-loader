@@ -1,5 +1,6 @@
-"use strict";;
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.uploadcareLoader = void 0;
 const constants_1 = require("./constants");
 const helpers_1 = require("./helpers");
 function uploadcareLoader({ src, width, quality }) {
@@ -49,5 +50,4 @@ function uploadcareLoader({ src, width, quality }) {
     }
     return `${root}${apiParamsString}${src}`;
 }
-exports.default = uploadcareLoader;
-module.exports = exports["default"];
+exports.uploadcareLoader = uploadcareLoader;
