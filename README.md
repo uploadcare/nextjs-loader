@@ -60,11 +60,11 @@ Alternatively, in case you're using a custom proxy, set the proxy domain.
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 ```
 
-That's it. You may now use `nextjs-loader` in your project (see [Usage](#usage)).
+That's it. You may now use `nextjs-loader` in your app (see [Usage](#usage)).
 
 ---
 
-Below are additional optional parameters which you may not need:
+Below are optional parameters which you may not need:
 
 ```ini
 #.env
@@ -108,11 +108,11 @@ import { uploadcareLoader } from 'nextjs-loader';
 />
 ```
 
-**Option 3**. Use [next-image-loader](https://www.npmjs.com/package/next-image-loader) project to enable Uploadcare image loader for all images by default
+**Option 3**. Use the [next-image-loader](https://www.npmjs.com/package/next-image-loader) plugin to enable Uploadcare image loader for all images by default
 
 In that case, you may not need the `loader: "custom"` setting in your `next.config.js`.
 
-1. Install the [next-image-loader](https://www.npmjs.com/package/next-image-loader) plugin and enable it as described in its README. 
+1. Install [next-image-loader](https://www.npmjs.com/package/next-image-loader) and enable it as described in its README. 
 
 2. Create `image-loader.config.js` in the project root (in the same directory as `next.config.js`)
 and add this code to it:
