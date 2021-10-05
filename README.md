@@ -1,6 +1,6 @@
 # [In Development] Uploadcare custom image loader for Next.js
-[![Build Status][build-img]][build-link]
 [![NPM version][npm-img]][npm-link]
+[![Build Status][build-img]][build-link]
 
 **!!! Please note the project is in active development and it's not ready for production just yet.**
 
