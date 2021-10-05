@@ -110,7 +110,7 @@ import { uploadcareLoader } from 'nextjs-loader';
 
 **Option 3**. Use the [next-image-loader](https://www.npmjs.com/package/next-image-loader) plugin to enable Uploadcare image loader for all images by default
 
-In that case, you don't need the `loader: "custom"` setting in your `next.config.js`.
+In that case, you may not need the `loader: "custom"` setting in your `next.config.js`.
 
 1. Install [next-image-loader](https://www.npmjs.com/package/next-image-loader) and enable it as described in its README. 
 
