@@ -5,7 +5,7 @@
 **!!! Please note the project is in active development and it's not ready for production just yet.**
 
 * [Demo](#demo)
-* [Preview](#preview)
+* [Play with it](#play-with-it)
 * [Dependencies](#dependencies)
 * [Installation](#installation)
 * [Configuration](#configuration)
@@ -17,15 +17,15 @@
 
 Look at the demo [here][demo-link].
 
-## Preview
+## Play with it
 
-Preview it on [StackBlitz](http://stackblitz.com/):
+Play with the demo example on [StackBlitz](http://stackblitz.com/):
 
 [![Open in StackBlitz][stackblitz-image]][stackblitz-link]
 
 ## Dependencies
 
-Next.js supports custom image loaders starting from 10.0.5.
+The only dependency is Next.js >= 10.0.5. 
 
 ## Installation
 
