@@ -1,5 +1,5 @@
 {
-  "name": "uploadcare-nextjs-loader1",
+  "name": "@uploadcare/nextjs-loader",
   "version": "0.1.0",
   "description": "Uploadcare custom loader (and more) for Next.js",
   "main": "./build/index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kkomelin/nextjs-loader.git"
+    "url": "git+https://github.com/uploadcare/nextjs-loader.git"
   },
   "keywords": [
     "nextjs",
@@ -34,9 +34,9 @@
   "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kkomelin/nextjs-loader/issues"
+    "url": "https://github.com/uploadcare/nextjs-loader/issues"
   },
-  "homepage": "https://github.com/kkomelin/nextjs-loader#readme",
+  "homepage": "https://github.com/uploadcare/nextjs-loader#readme",
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",

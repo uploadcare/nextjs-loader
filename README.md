@@ -30,7 +30,7 @@ The only dependency is Next.js >= 10.0.5.
 ## Installation
 
 ```shell_script
-yarn add nextjs-loader
+yarn add @uploadcare/nextjs-loader
 ```
 
 ## Configuration
@@ -60,7 +60,7 @@ Alternatively, in case you're using a custom proxy, set the proxy domain.
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 ```
 
-That's it. You may now use `nextjs-loader` in your app (see [Usage](#usage)).
+That's it. You may now use `@uploadcare/nextjs-loader` in your app (see [Usage](#usage)).
 
 ---
 
@@ -80,7 +80,7 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 
 **Option 1**. Use the `UploadcareImage` component and leave us the reset ;)
 ```tsx
-import UploadcareImage from 'nextjs-loader';
+import UploadcareImage from '@uploadcare/nextjs-loader';
 
 <UploadcareImage
   alt="A test image"
@@ -96,7 +96,7 @@ The `UploadcareImage` component supports the same parameters as the Next `Image`
 
 ```tsx
 import Image from 'next/image';
-import { uploadcareLoader } from 'nextjs-loader';
+import { uploadcareLoader } from '@uploadcare/nextjs-loader';
 
 <Image 
   alt="A test image"
@@ -120,7 +120,7 @@ and add this code to it:
 ```js
 // image-loader.config.js
 import { imageLoader } from 'next-image-loader/build/image-loader';
-import { uploadcareLoader } from 'nextjs-loader';
+import { uploadcareLoader } from '@uploadcare/nextjs-loader';
 
 imageLoader.loader = uploadcareLoader;
 ```
@@ -173,11 +173,11 @@ Next checks whether the image url which loader generates has the exact value whi
 **Fix:** Ignore the warning for now.
 
 
-[build-img]: https://app.travis-ci.com/kkomelin/nextjs-loader.svg?branch=main
-[build-link]: https://api.travis-ci.com/kkomelin/nextjs-loader
-[npm-img]: https://img.shields.io/npm/v/nextjs-loader.svg
-[npm-link]: https://www.npmjs.com/package/nextjs-loader
+[build-img]: https://app.travis-ci.com/uploadcare/nextjs-loader.svg?branch=main
+[build-link]: https://api.travis-ci.com/uploadcare/nextjs-loader
+[npm-img]: https://img.shields.io/npm/v/@uploadcare/nextjs-loader.svg
+[npm-link]: https://www.npmjs.com/package/@uploadcare/nextjs-loader
 [stackblitz-image]: https://developer.stackblitz.com/img/open_in_stackblitz.svg
-[stackblitz-link]: https://stackblitz.com/github/kkomelin/nextjs-loader/tree/main/example
+[stackblitz-link]: https://stackblitz.com/github/uploadcare/nextjs-loader/tree/main/example
 [demo-link]: https://nextjs-loader.vercel.app/
 [uploadcare-transformation-image-compression-docs]: https://uploadcare.com/docs/transformations/image/compression/?utm_source=github&utm_campaign=nextjs-loader

@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-loader-demo",
+  "name": "@uploadcare/nextjs-loader-demo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "next": "11.1.2",
-    "uploadcare-nextjs-loader1": "*",
+    "@uploadcare/nextjs-loader": "*",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
