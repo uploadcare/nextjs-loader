@@ -6,8 +6,8 @@
   "types": "./build/index.d.ts",
   "module": "./build/index.js",
   "scripts": {
-    "lint": "eslint ./src/**/*.{ts,tsx} ./src/*.{ts,tsx}",
-    "format": "yarn prettier src/*.{ts,tsx} src/**/*.{ts,tsx} --write",
+    "lint": "eslint ./src/**/*.{ts,tsx}",
+    "format": "yarn prettier src/**/*.{ts,tsx} --write",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "build": "tsc --project tsconfig.publish.json && ts-add-module-exports",
