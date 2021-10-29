@@ -1,5 +1,5 @@
 # Uploadcare custom image loader for Next.js
-[![Build Status][build-img]][build-link]
+![Test Status][test-status-img]
 [![NPM version][npm-img]][npm-link]
 
 * [Demo](#demo)
@@ -170,9 +170,7 @@ Next checks whether the image url which loader generates has the exact value whi
 
 **Fix:** Ignore the warning for now.
 
-
-[build-img]: https://app.travis-ci.com/uploadcare/nextjs-loader.svg?branch=main
-[build-link]: https://api.travis-ci.com/uploadcare/nextjs-loader
+[test-status-img]: https://github.com/uploadcare/nextjs-loader/actions/workflows/test-and-lint.yml/badge.svg
 [npm-img]: https://img.shields.io/npm/v/@uploadcare/nextjs-loader.svg
 [npm-link]: https://www.npmjs.com/package/@uploadcare/nextjs-loader
 [stackblitz-image]: https://developer.stackblitz.com/img/open_in_stackblitz.svg
