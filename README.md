@@ -170,7 +170,7 @@ Next checks whether the image url which loader generates has the exact value whi
 
 **Fix:** Ignore the warning for now.
 
-[test-status-img]: https://github.com/uploadcare/nextjs-loader/.github/workflows/test-and-lint.yml/badge.svg
+[test-status-img]: https://github.com/uploadcare/nextjs-loader/actions/workflows/test-and-lint.yml/badge.svg
 [npm-img]: https://img.shields.io/npm/v/@uploadcare/nextjs-loader.svg
 [npm-link]: https://www.npmjs.com/package/@uploadcare/nextjs-loader
 [stackblitz-image]: https://developer.stackblitz.com/img/open_in_stackblitz.svg
