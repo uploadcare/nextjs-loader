@@ -7,24 +7,57 @@ describe('uploadcareLoader', () => {
     cleanup();
   });
 
-  test("The loader validates the 'src' parameter", () => {
+  test("The loader returns relative 'src' AS IS in Development environment", () => {
     addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
 
     const src = '/relative/image.jpg';
 
-    const t = () => {
+    const result = 
       uploadcareLoader({
         src,
         width: 0,
         quality: 80
       });
-    };
 
-    expect(t).toThrow(
-      `Failed to parse "${src}" in "uploadcareLoader", Uploadcare loader doesn't support relative images.`
-    );
+    expect(result).toEqual(src);
 
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
+  });
+
+  test("The loader builds up a relative 'src' to the absolute URL and passes it to the proxy in Production environment", () => {
+    addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
+    addEnvVar('NODE_ENV', 'production');
+
+    // When the base path is not set through env vars.
+
+    const src = '/relative/image.jpg';
+
+    let result = 
+      uploadcareLoader({
+        src,
+        width: 0,
+        quality: 80
+      });
+
+    expect(result).toEqual(src);
+
+    // When the base path is set through env vars.
+
+    const basePath = 'https://example.com';
+    addEnvVar('NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH', basePath);
+
+    result = 
+      uploadcareLoader({
+        src,
+        width: 0,
+        quality: 80
+      });
+
+    expect(result).toEqual(`${basePath}${src}`);
+
+    removeEnvVar('NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH');
+    removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
+    removeEnvVar('NODE_ENV');
   });
 
   test('The loader requires either a public key or a custom proxy domain', () => {
@@ -117,7 +150,7 @@ describe('uploadcareLoader', () => {
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS');
   });
 
-  test("The loader doesn't process SVG and GIF", () => {
+  test("The loader doesn't process SVG and GIF (absolute url)", () => {
     const src = 'https:/example.com/image.svg';
 
     addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
@@ -128,7 +161,23 @@ describe('uploadcareLoader', () => {
       quality: 80
     });
 
-    expect(result).toBe(`https://test-public-key.ucr.io${src}`);
+    expect(result).toBe(src);
+
+    removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
+  });
+
+  test("The loader doesn't process SVG and GIF (relative url)", () => {
+    const src = '/image.svg';
+
+    addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
+
+    const result = uploadcareLoader({
+      src,
+      width: 500,
+      quality: 80
+    });
+
+    expect(result).toBe(src);
 
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
   });

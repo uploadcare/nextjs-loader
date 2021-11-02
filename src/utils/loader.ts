@@ -38,7 +38,9 @@ export function uploadcareLoader({
   const proxyEndpoint =
     customProxyEndpoint || generateDefaultProxyEndpoint(publicKey);
 
-  const root = trimTrailingSlash(proxyEndpoint);
+  const basePath = trimTrailingSlash(process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH || '');
+
+  const proxy = trimTrailingSlash(proxyEndpoint);
 
   const isOnCdn = isCdnUrl(src, cdnDomain);
 
@@ -53,10 +55,19 @@ export function uploadcareLoader({
     }
 
     if (src.startsWith('/')) {
-      throw new Error(
-        `Failed to parse "${src}" in "uploadcareLoader", Uploadcare loader doesn't support relative images.`
-      );
+      return src;
     }
+  }
+
+  // Process local images in Production.
+  if (isProduction() && !isOnCdn && src.startsWith('/')) {
+    const isBasePathSet = !isDotenvParamEmpty(basePath);
+
+    if (!isBasePathSet) {
+      return src;
+    }
+    
+    return `${basePath}${src}`;
   }
 
   const filename = getFilename(src);
@@ -64,8 +75,7 @@ export function uploadcareLoader({
 
   // Some extensions are not processed by Uploadcare, e.g. SVG.
   if (NOT_PROCESSED_EXTENSIONS.includes(extension)) {
-    // @todo: Test non-CDN urls.
-    return isOnCdn ? src : `${root}${src}`;
+    return isOnCdn ? src : `${basePath}${src}`;
   }
 
   // Demo: https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/resize/300x/vercel.png
@@ -94,5 +104,5 @@ export function uploadcareLoader({
     return `${withoutFilename}${apiParamsString}${filename}`;
   }
 
-  return `${root}${apiParamsString}${src}`;
+  return `${proxy}${apiParamsString}${src}`;
 }

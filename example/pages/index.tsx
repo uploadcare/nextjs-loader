@@ -68,6 +68,15 @@ const Home: NextPage = () => (
         height={64}
         loader={uploadcareLoader}
       />
+       <hr className={styles.hr} />
+      <p>Local image will be served AS IS in Development, and converted to the absolute URL and passed to the proxy in Production</p>
+      <Image
+        alt="A local image"
+        src="/local_image.png"
+        width={494}
+        height={332}
+        loader={uploadcareLoader}
+      />
       <hr className={styles.hr} />
       Checkout the documentation for{' '}
       <a href="https://nextjs.org/docs/basic-features/image-optimization#uploadcare-loader">
