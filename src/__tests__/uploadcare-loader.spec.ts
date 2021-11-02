@@ -12,12 +12,11 @@ describe('uploadcareLoader', () => {
 
     const src = '/relative/image.jpg';
 
-    const result = 
-      uploadcareLoader({
-        src,
-        width: 0,
-        quality: 80
-      });
+    const result = uploadcareLoader({
+      src,
+      width: 0,
+      quality: 80
+    });
 
     expect(result).toEqual(src);
 
@@ -32,12 +31,11 @@ describe('uploadcareLoader', () => {
 
     const src = '/relative/image.jpg';
 
-    let result = 
-      uploadcareLoader({
-        src,
-        width: 0,
-        quality: 80
-      });
+    let result = uploadcareLoader({
+      src,
+      width: 0,
+      quality: 80
+    });
 
     expect(result).toEqual(src);
 
@@ -46,12 +44,11 @@ describe('uploadcareLoader', () => {
     const basePath = 'https://example.com';
     addEnvVar('NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH', basePath);
 
-    result = 
-      uploadcareLoader({
-        src,
-        width: 0,
-        quality: 80
-      });
+    result = uploadcareLoader({
+      src,
+      width: 0,
+      quality: 80
+    });
 
     expect(result).toEqual(`${basePath}${src}`);
 

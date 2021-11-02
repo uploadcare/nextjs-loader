@@ -38,7 +38,9 @@ export function uploadcareLoader({
   const proxyEndpoint =
     customProxyEndpoint || generateDefaultProxyEndpoint(publicKey);
 
-  const basePath = trimTrailingSlash(process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH || '');
+  const basePath = trimTrailingSlash(
+    process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH || ''
+  );
 
   const proxy = trimTrailingSlash(proxyEndpoint);
 
@@ -66,7 +68,7 @@ export function uploadcareLoader({
     if (!isBasePathSet) {
       return src;
     }
-    
+
     return `${basePath}${src}`;
   }
 
