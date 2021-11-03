@@ -284,6 +284,11 @@
     "@typescript-eslint/types" "4.33.0"
     eslint-visitor-keys "^2.0.0"
 
+"@uploadcare/nextjs-loader@*":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@uploadcare/nextjs-loader/-/nextjs-loader-0.1.0.tgz#e922dfd2275a63890a09c2d3190ce385e6e28426"
+  integrity sha512-cGomYrxKdMl+JCPIe0E6Pb0vS+2RHon4+ezBO1dLsIvzzkgMKvZEVC8fplWg1j7pzUpxvgAnAMNN+Pri3XhaRQ==
+
 acorn-jsx@^5.3.1:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
@@ -3143,11 +3148,6 @@ unpipe@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
-
-uploadcare-nextjs-loader1@*:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/uploadcare-nextjs-loader1/-/uploadcare-nextjs-loader1-0.1.0.tgz#9c28a377ff76d06c5773ec5beb01d7e5f09ddeed"
-  integrity sha512-zU9pXyj2O8krjrgULAvuk/T6PaED0tUULS6OvEJsA11jbSjU5PSNhc3RRZJYkfr8bHWQ6JK1RsdYA9OAAQlkLQ==
 
 uri-js@^4.2.2:
   version "4.4.1"

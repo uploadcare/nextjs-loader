@@ -58,6 +58,13 @@ Alternatively, in case you're using a custom proxy, set the proxy domain.
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 ```
 
+Then set the app base path (to get relative image urls processed in Production):
+
+```ini
+#.env
+NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH="https://example.com/"
+```
+
 That's it. You may now use `@uploadcare/nextjs-loader` in your app (see [Usage](#usage)).
 
 ---
