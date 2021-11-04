@@ -3,7 +3,6 @@
 [![NPM version][npm-img]][npm-link]
 
 * [Demo](#demo)
-* [Play with it](#play-with-it)
 * [Dependencies](#dependencies)
 * [Installation](#installation)
 * [Configuration](#configuration)
@@ -14,12 +13,6 @@
 ## Demo
 
 Look at the demo [here][demo-link].
-
-## Play with it
-
-Play with the demo example on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz][stackblitz-image]][stackblitz-link]
 
 ## Dependencies
 
@@ -180,7 +173,5 @@ Next checks whether the image url which loader generates has the exact value whi
 [test-status-img]: https://github.com/uploadcare/nextjs-loader/actions/workflows/test-and-lint.yml/badge.svg
 [npm-img]: https://img.shields.io/npm/v/@uploadcare/nextjs-loader.svg
 [npm-link]: https://www.npmjs.com/package/@uploadcare/nextjs-loader
-[stackblitz-image]: https://developer.stackblitz.com/img/open_in_stackblitz.svg
-[stackblitz-link]: https://stackblitz.com/github/uploadcare/nextjs-loader/tree/main/example
 [demo-link]: https://nextjs-loader.vercel.app/
 [uploadcare-transformation-image-compression-docs]: https://uploadcare.com/docs/transformations/image/compression/?utm_source=github&utm_campaign=nextjs-loader
