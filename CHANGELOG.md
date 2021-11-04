@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/uploadcare/nextjs-loader/compare/v0.2.0...v0.3.0) (2021-11-04)
+
+
+### Features
+
+* Bumped Next.js to 12. ([9c8be4c](https://github.com/uploadcare/nextjs-loader/commit/9c8be4c1a7abef88fda25690950f5f4c232c7329))
+
+
+
 # [0.2.0](https://github.com/uploadcare/nextjs-loader/compare/v0.1.0...v0.2.0) (2021-11-03)
 
 
