@@ -12,7 +12,7 @@ function uploadcareLoader({ src, width, quality }) {
         ? (0, helpers_1.generateDefaultProxyEndpoint)(customProxyDomain)
         : null;
     const proxyEndpoint = customProxyEndpoint || (0, helpers_1.generateDefaultProxyEndpoint)(publicKey);
-    const basePath = (0, helpers_1.trimTrailingSlash)(process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH || '');
+    const basePath = (0, helpers_1.trimTrailingSlash)(process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL || '');
     const proxy = (0, helpers_1.trimTrailingSlash)(proxyEndpoint);
     const isOnCdn = (0, helpers_1.isCdnUrl)(src, cdnDomain);
     if (!(0, helpers_1.isProduction)() && !isOnCdn) {

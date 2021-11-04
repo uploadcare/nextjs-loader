@@ -42,7 +42,7 @@ describe('uploadcareLoader', () => {
     // When the base path is set through env vars.
 
     const basePath = 'https://example.com';
-    addEnvVar('NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH', basePath);
+    addEnvVar('NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL', basePath);
 
     result = uploadcareLoader({
       src,
@@ -52,7 +52,7 @@ describe('uploadcareLoader', () => {
 
     expect(result).toEqual(`${basePath}${src}`);
 
-    removeEnvVar('NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH');
+    removeEnvVar('NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL');
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
     removeEnvVar('NODE_ENV');
   });

@@ -39,7 +39,7 @@ export function uploadcareLoader({
     customProxyEndpoint || generateDefaultProxyEndpoint(publicKey);
 
   const basePath = trimTrailingSlash(
-    process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH || ''
+    process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL || ''
   );
 
   const proxy = trimTrailingSlash(proxyEndpoint);
