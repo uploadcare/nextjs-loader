@@ -12,7 +12,8 @@ function uploadcareLoader({ src, width, quality }) {
         ? (0, helpers_1.generateDefaultProxyEndpoint)(customProxyDomain)
         : null;
     const proxyEndpoint = customProxyEndpoint || (0, helpers_1.generateDefaultProxyEndpoint)(publicKey);
-    const root = (0, helpers_1.trimTrailingSlash)(proxyEndpoint);
+    const basePath = (0, helpers_1.trimTrailingSlash)(process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_PATH || '');
+    const proxy = (0, helpers_1.trimTrailingSlash)(proxyEndpoint);
     const isOnCdn = (0, helpers_1.isCdnUrl)(src, cdnDomain);
     if (!(0, helpers_1.isProduction)() && !isOnCdn) {
         const isPublicKeySet = !(0, helpers_1.isDotenvParamEmpty)(publicKey);
@@ -21,15 +22,22 @@ function uploadcareLoader({ src, width, quality }) {
             throw new Error(`Both NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY and NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN are not set. Please set either one.`);
         }
         if (src.startsWith('/')) {
-            throw new Error(`Failed to parse "${src}" in "uploadcareLoader", Uploadcare loader doesn't support relative images.`);
+            return src;
         }
+    }
+    // Process local images in Production.
+    if ((0, helpers_1.isProduction)() && !isOnCdn && src.startsWith('/')) {
+        const isBasePathSet = !(0, helpers_1.isDotenvParamEmpty)(basePath);
+        if (!isBasePathSet) {
+            return src;
+        }
+        return `${basePath}${src}`;
     }
     const filename = (0, helpers_1.getFilename)(src);
     const extension = (0, helpers_1.getExtension)(filename);
     // Some extensions are not processed by Uploadcare, e.g. SVG.
     if (constants_1.NOT_PROCESSED_EXTENSIONS.includes(extension)) {
-        // @todo: Test non-CDN urls.
-        return isOnCdn ? src : `${root}${src}`;
+        return isOnCdn ? src : `${basePath}${src}`;
     }
     // Demo: https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/resize/300x/vercel.png
     const userParams = (0, helpers_1.parseUserParamsString)(userParamsString);
@@ -48,6 +56,6 @@ function uploadcareLoader({ src, width, quality }) {
         const withoutFilename = src.slice(0, src.lastIndexOf('/'));
         return `${withoutFilename}${apiParamsString}${filename}`;
     }
-    return `${root}${apiParamsString}${src}`;
+    return `${proxy}${apiParamsString}${src}`;
 }
 exports.uploadcareLoader = uploadcareLoader;
