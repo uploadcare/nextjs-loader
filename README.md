@@ -2,6 +2,17 @@
 ![Test Status][test-status-img]
 [![NPM version][npm-img]][npm-link]
 
+<a href="https://uploadcare.com/?utm_source=github&utm_campaign=nextjs-loader">
+  <img align="right" width="56" height="56"
+    src="https://ucarecdn.com/1cc871de-5d82-442d-b4d6-aa2e35966879/-/resize/112x112/-/quality/lightest/logocircle2x.png"
+    alt="">
+</a>
+
+The package helps you use the Uploadcare's transformation and CDN services from a Next.js app smoothly and easily.
+
+It provides the `uploadcareLoader` function, which you can use as [a custom loader for Next's Image component](https://nextjs.org/docs/api-reference/next/image#loader), and the `UploadcareImage` component with the custom loader enabled by default.
+
+
 * [Demo](#demo)
 * [Dependencies](#dependencies)
 * [Installation](#installation)
