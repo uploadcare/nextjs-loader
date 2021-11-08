@@ -10,7 +10,7 @@
 
 The package helps you use the Uploadcare's transformation and CDN services from a Next.js app smoothly and easily.
 
-It provides the `uploadcareLoader` function, which you can use as [a custom loader for Next's Image component](https://nextjs.org/docs/api-reference/next/image#loader), and the `UploadcareImage` component with the custom loader enabled by default.
+It provides the `uploadcareLoader` function, which you can use as [a custom loader for the Next's Image component](https://nextjs.org/docs/api-reference/next/image#loader), and the `UploadcareImage` component with the custom loader enabled by default.
 
 
 * [Demo](#demo)
