@@ -43,10 +43,12 @@ export function uploadcareLoader({
   );
 
   const proxy = trimTrailingSlash(proxyEndpoint);
+  const isProductionMode = isProduction();
+  const isImageOnCdn = isCdnUrl(src, cdnDomain);
+  const isImageRelative = src.startsWith('/');
 
-  const isOnCdn = isCdnUrl(src, cdnDomain);
-
-  if (!isProduction() && !isOnCdn) {
+  // Development mode; not on CDN.
+  if (!isProductionMode && !isImageOnCdn) {
     const isPublicKeySet = !isDotenvParamEmpty(publicKey);
     const isCustomProxyEndpointSet = !isDotenvParamEmpty(customProxyEndpoint);
 
@@ -56,20 +58,9 @@ export function uploadcareLoader({
       );
     }
 
-    if (src.startsWith('/')) {
+    if (isImageRelative) {
       return src;
     }
-  }
-
-  // Process local images in Production.
-  if (isProduction() && !isOnCdn && src.startsWith('/')) {
-    const isBasePathSet = !isDotenvParamEmpty(basePath);
-
-    if (!isBasePathSet) {
-      return src;
-    }
-
-    return `${basePath}${src}`;
   }
 
   const filename = getFilename(src);
@@ -77,13 +68,12 @@ export function uploadcareLoader({
 
   // Some extensions are not processed by Uploadcare, e.g. SVG.
   if (NOT_PROCESSED_EXTENSIONS.includes(extension)) {
-    return isOnCdn ? src : `${basePath}${src}`;
+    return isImageOnCdn ? src : `${basePath}${src}`;
   }
 
   // Demo: https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/resize/300x/vercel.png
 
   const userParams = parseUserParamsString(userParamsString);
-
   const requestedFormat = getRequestedFormatFromParams(userParams);
   const qualityString = convertToUploadcareQualityString(quality);
 
@@ -101,9 +91,21 @@ export function uploadcareLoader({
 
   const apiParamsString = '/-/' + params.join('/-/') + '/';
 
-  if (isOnCdn) {
+  if (isImageOnCdn) {
     const withoutFilename = src.slice(0, src.lastIndexOf('/'));
     return `${withoutFilename}${apiParamsString}${filename}`;
+  }
+
+  // Production mode; local image.
+  if (isProductionMode && isImageRelative) {
+    const isBasePathSet = !isDotenvParamEmpty(basePath);
+
+    // Return the relative url AS IS if the base path is not set.
+    if (!isBasePathSet) {
+      return src;
+    }
+
+    return `${proxy}${apiParamsString}${basePath}${src}`;
   }
 
   return `${proxy}${apiParamsString}${src}`;

@@ -50,7 +50,9 @@ describe('uploadcareLoader', () => {
       quality: 80
     });
 
-    expect(result).toEqual(`${basePath}${src}`);
+    expect(result).toEqual(
+      `https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/0x/-/quality/normal/${basePath}${src}`
+    );
 
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL');
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
