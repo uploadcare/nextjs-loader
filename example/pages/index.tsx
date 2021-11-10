@@ -13,7 +13,7 @@ const Code: FC<CodeProps> = (p) =>
 const Home: NextPage = () => (
   <div className={styles.container}>
     <div className={styles.card}>
-      <h1>Uploadcare custom loader for Image Component [@uploadcare/nextjs-loader](https://github.com/uploadcare/nextjs-loader)</h1>
+      <h1>Uploadcare custom loader for Image Component <a href="https://github.com/uploadcare/nextjs-loader">@uploadcare/nextjs-loader</a></h1>
       <p>
         The following is an example of a reference to an image from the{' '}
         Uploadcare CDN at <Code>ucarecdn.com</Code>
@@ -78,7 +78,7 @@ const Home: NextPage = () => (
         loader={uploadcareLoader}
       />
       <hr className={styles.hr} />
-      Checkout the project documentation on Github [@uploadcare/nextjs-loader](https://github.com/uploadcare/nextjs-loader).
+      Checkout the project documentation on Github <a href="https://github.com/uploadcare/nextjs-loader">@uploadcare/nextjs-loader</a>.
     </div>
   </div>
 )
