@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/uploadcare/nextjs-loader/compare/v0.3.0...v0.3.1) (2021-11-09)
+
+
+### Bug Fixes
+
+* Fixed processing of the local image in the production mode. ([f165d3a](https://github.com/uploadcare/nextjs-loader/commit/f165d3a4caa486138954e77279ccb0efd48c4ad9))
+
+
+
 # [0.3.0](https://github.com/uploadcare/nextjs-loader/compare/v0.2.0...v0.3.0) (2021-11-04)
 
 
