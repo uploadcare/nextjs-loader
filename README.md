@@ -18,8 +18,9 @@ It provides the `uploadcareLoader` function, which you can use as [a custom load
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Usage](#usage)
-* [Links](#links)
+* [Notes](#notes)
 * [Known Issues](#known-issues)
+* [Links](#links)
 
 ## Demo
 
