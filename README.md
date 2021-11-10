@@ -166,10 +166,9 @@ import anotherLoader from '[another-loader-project-name]';
 
 where `anotherLoader` will be used instead of the Uploadcare loader for this particular image.
 
-## Links
+## Notes
 
-- [Uploadcare image compression documentation][uploadcare-transformation-image-compression-docs]
-- [Uploadcare File Uploader for React](https://github.com/uploadcare/react-widget)
+If you pass a local image url, the loader returns it AS IS if the app is run in the development mode or if the `NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL` is not set.
 
 ## Known Issues
 
@@ -180,6 +179,11 @@ Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
 Next checks whether the image url which loader generates has the exact value which user passed through the `width` property of the `Image` component. And because the Uploadcare loader doesn't process SVG and GIF images, it just returns the same `src` value without adding any transformation parameters to it (including `width`). That's why Next reports the console warning.
 
 **Fix:** Ignore the warning for now.
+
+## Links
+
+- [Uploadcare image compression documentation][uploadcare-transformation-image-compression-docs]
+- [Uploadcare File Uploader for React](https://github.com/uploadcare/react-widget)
 
 [test-status-img]: https://github.com/uploadcare/nextjs-loader/actions/workflows/test-and-lint.yml/badge.svg
 [npm-img]: https://img.shields.io/npm/v/@uploadcare/nextjs-loader.svg
