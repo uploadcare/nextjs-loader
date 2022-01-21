@@ -4,25 +4,22 @@ import {
 } from './constants';
 
 /**
- * Merge user parameters with default parameters, so that user parameters have higher priority.
+ * Merge transformation parameters from `a` and `b`, so that `b` parameters have higher priority.
  *
- * @param {string[]} defaultParams
- * @param {string[]} userParams
+ * @param {string[]} a
+ * @param {string[]} b
  * @returns {string[]}
  */
-export function mergeParams(
-  defaultParams: string[],
-  userParams: string[]
-): string[] {
-  const resultParams = defaultParams;
+export function mergeParams(a: string[], b: string[]): string[] {
+  const resultParams = [...a];
 
-  for (let i = 0; i < userParams.length; i++) {
-    const [userParam] = _parseUploadcareTransformationParam(userParams[i]);
+  for (let i = 0; i < b.length; i++) {
+    const [userParam] = _parseUploadcareTransformationParam(b[i]);
 
     let hasBeenReplaced = false;
     for (let j = 0; j < resultParams.length; j++) {
       if (resultParams[j].startsWith(userParam)) {
-        resultParams[j] = userParams[i];
+        resultParams[j] = b[i];
         hasBeenReplaced = true;
         break;
       }
@@ -30,7 +27,7 @@ export function mergeParams(
 
     // If the param is new, just add it.
     if (!hasBeenReplaced) {
-      resultParams.push(userParams[i]);
+      resultParams.push(b[i]);
     }
   }
 

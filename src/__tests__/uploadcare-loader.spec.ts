@@ -276,7 +276,8 @@ describe('uploadcareLoader', () => {
       'https://test-public-key.ucr.io/-/format/jpeg/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https:/example.com/image.png'
     );
 
-    // // Jpg image by extension with auto format. Should be max 5000 width.
+    // // Jpg image by extension with auto format.
+    // // Should be max 5000 width with /format/jpeg/ forced.
 
     src = 'https:/example.com/image.jpg';
 
@@ -292,7 +293,7 @@ describe('uploadcareLoader', () => {
     });
 
     expect(result).toBe(
-      'https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https:/example.com/image.jpg'
+      'https://test-public-key.ucr.io/-/format/jpeg/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https:/example.com/image.jpg'
     );
 
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
