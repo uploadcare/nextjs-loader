@@ -2,7 +2,8 @@ import { ImageLoaderProps } from 'next/image';
 import {
   DEFAULT_CDN_DOMAIN,
   DEFAULT_PARAMS,
-  NOT_PROCESSED_EXTENSIONS
+  NOT_PROCESSED_EXTENSIONS,
+  MAX_OUTPUT_IMAGE_DIMENSION
 } from './constants';
 import {
   convertToUploadcareQualityString,
@@ -81,13 +82,19 @@ export function uploadcareLoader({
     requestedFormat === 'jpeg' ||
     (requestedFormat === 'auto' && isJpegExtension(extension));
   const maxResizeWidth = getMaxResizeWidth(width, isJpeg);
+  const forceJpeg = isJpeg && maxResizeWidth > MAX_OUTPUT_IMAGE_DIMENSION;
 
-  const basicParams = DEFAULT_PARAMS.concat([
+  const basicParams = DEFAULT_PARAMS.concat(
     `resize/${maxResizeWidth}x`,
     `quality/${qualityString}`
-  ]);
-
-  const params = mergeParams(basicParams, userParams);
+  );
+  const formatOverridedParams = [
+    `format/${forceJpeg ? 'jpeg' : requestedFormat}`
+  ];
+  const params = mergeParams(
+    mergeParams(basicParams, userParams),
+    formatOverridedParams
+  );
 
   const apiParamsString = '/-/' + params.join('/-/') + '/';
 
