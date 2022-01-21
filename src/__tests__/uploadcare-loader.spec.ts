@@ -237,7 +237,7 @@ describe('uploadcareLoader', () => {
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN');
   });
 
-  test.only('The loader sets max resolution for different formats properly', () => {
+  test('The loader sets max resolution for different formats properly', () => {
     addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
 
     // Not a jpg image. Should be max 3000 width.
