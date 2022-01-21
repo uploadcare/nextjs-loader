@@ -88,12 +88,12 @@ export function uploadcareLoader({
     `resize/${maxResizeWidth}x`,
     `quality/${qualityString}`
   );
-  const formatOverridedParams = [
+  const formatOverrideParams = [
     `format/${forceJpeg ? 'jpeg' : requestedFormat}`
   ];
   const params = mergeParams(
     mergeParams(basicParams, userParams),
-    formatOverridedParams
+    formatOverrideParams
   );
 
   const apiParamsString = '/-/' + params.join('/-/') + '/';
