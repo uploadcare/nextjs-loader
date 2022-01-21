@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/uploadcare/nextjs-loader/compare/v0.3.1...v0.3.2) (2022-01-21)
+
+
+### Bug Fixes
+
+* force format for large jpegs ([#11](https://github.com/uploadcare/nextjs-loader/issues/11)) ([2e93d47](https://github.com/uploadcare/nextjs-loader/commit/2e93d473884f7d808766d45cc8e71a6331cced57))
+
+
+
 ## [0.3.1](https://github.com/uploadcare/nextjs-loader/compare/v0.3.0...v0.3.1) (2021-11-09)
 
 
