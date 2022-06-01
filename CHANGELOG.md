@@ -1,3 +1,12 @@
+## [0.3.3](https://github.com/uploadcare/nextjs-loader/compare/v0.3.2...v0.3.3) (2022-06-01)
+
+
+### Bug Fixes
+
+* accept src without filename ([#14](https://github.com/uploadcare/nextjs-loader/issues/14)) ([7f18177](https://github.com/uploadcare/nextjs-loader/commit/7f1817794d7e84ccd0a049aba883ae223c6d1d46))
+
+
+
 ## [0.3.2](https://github.com/uploadcare/nextjs-loader/compare/v0.3.1...v0.3.2) (2022-01-21)
 
 
