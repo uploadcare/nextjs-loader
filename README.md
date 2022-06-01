@@ -169,7 +169,9 @@ where `anotherLoader` will be used instead of the Uploadcare loader for this par
 
 ## Notes
 
-If you pass a local image url, the loader returns it AS IS if the app is run in the development mode or if the `NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL` is not set.
+- If you have jpegs larger than 3000px and you want loader to resize them up to 5000px, you need to pass filename with `jpeg` or `jpg`  extension to the src url. See [Output image dimensions docs](https://uploadcare.com/docs/transformations/image/#dimensions) for more details. When no filename provided, we'll treat the image as non-jpeg and can resize it up to 3000px only.
+
+- If you pass a local image url, the loader returns it AS IS if the app is run in the development mode or if the `NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL` is not set.
 
 ## Known Issues
 
