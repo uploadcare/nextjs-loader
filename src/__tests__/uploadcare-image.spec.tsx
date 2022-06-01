@@ -8,12 +8,16 @@ import { addEnvVar, removeEnvVar } from './utils';
 
 describe('UploadcareImage', () => {
   beforeEach(() => {
+    addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
+
     cleanup();
   });
 
-  test('The UploadcareImage component renders passed image with default settings properly', () => {
-    addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
+  afterEach(() => {
+    removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
+  });
 
+  test('The UploadcareImage component renders passed image with default settings properly', () => {
     const src =
       'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png';
 
@@ -32,7 +36,24 @@ describe('UploadcareImage', () => {
     expect(screen.getByRole('img').getAttribute('src')).toEqual(
       'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/1080x/-/quality/normal/vercel.png'
     );
+  });
 
-    removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
+  test('The UploadcareImage component should accept src without filename', () => {
+    const src = 'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/';
+
+    render(
+      <UploadcareImage
+        src={src}
+        width={500}
+        height={500}
+        quality={80}
+        // Necessary because lazy-loading causes a placeholder image render first.
+        loading="eager"
+      />
+    );
+
+    expect(screen.getByRole('img').getAttribute('src')).toEqual(
+      'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/1080x/-/quality/normal/'
+    );
   });
 });

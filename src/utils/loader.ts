@@ -80,7 +80,7 @@ export function uploadcareLoader({
 
   const isJpeg =
     requestedFormat === 'jpeg' ||
-    (requestedFormat === 'auto' && isJpegExtension(extension));
+    (requestedFormat === 'auto' && !!extension && isJpegExtension(extension));
   const maxResizeWidth = getMaxResizeWidth(width, isJpeg);
   const forceJpeg = isJpeg && maxResizeWidth > MAX_OUTPUT_IMAGE_DIMENSION;
 
