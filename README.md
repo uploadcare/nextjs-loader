@@ -171,7 +171,7 @@ where `anotherLoader` will be used instead of the Uploadcare loader for this par
 
 ### `placeholder` and `blurDataURL`
 
-This options is available for the `UploadcareImage` component only. It won't work when you're using custom loader derectly.
+This options is available for the `UploadcareImage` component only. It won't work when you're using custom loader directly.
 
 If you pass `placeholder="blur"` to the `UploadcareImage` component, it will generate `blurDataURL` with the URL of the placeholder image (not base64) and use it as a placeholder. You can override `blurDataURL`.
 
