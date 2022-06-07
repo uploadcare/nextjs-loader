@@ -1,15 +1,13 @@
-import type { NextPage } from 'next';
-import Image from 'next/image';
-import UploadcareImage, { uploadcareLoader } from '@uploadcare/nextjs-loader';
-import { FC } from 'react';
-import styles from '../styles/Home.module.css';
+import type { NextPage } from 'next'
+import Image from 'next/image'
+import UploadcareImage, { uploadcareLoader } from '@uploadcare/nextjs-loader'
+import { FC } from 'react'
+import styles from '../styles/Home.module.css'
 
 type CodeProps = {
-  [key: string]: any;
-};
-const Code: FC<CodeProps> = (p) => (
-  <code className={styles.inlineCode} {...p} />
-);
+  [key: string]: any
+}
+const Code: FC<CodeProps> = (p) => <code className={styles.inlineCode} {...p} />
 
 const Home: NextPage = () => (
   <div className={styles.container}>
@@ -50,7 +48,8 @@ const Home: NextPage = () => (
       <p>
         The following is an example of use of the <Code>UploadcareImage</Code>{' '}
         helper component with <Code>placeholder=blur</Code> property. It&apos;s
-        better to enable network throttling in dev tools to see the blurred placeholder.
+        better to enable network throttling in dev tools to see the blurred
+        placeholder.
       </p>
       <UploadcareImage
         alt="Vercel logo"
@@ -108,6 +107,6 @@ const Home: NextPage = () => (
       .
     </div>
   </div>
-);
+)
 
-export default Home;
+export default Home
