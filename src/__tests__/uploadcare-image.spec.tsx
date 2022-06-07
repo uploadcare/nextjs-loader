@@ -62,17 +62,11 @@ describe('UploadcareImage', () => {
       'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/image.png';
 
     render(
-      <UploadcareImage
-        src={src}
-        width={500}
-        height={500}
-        quality={80}
-        placeholder="blur"
-      />
+      <UploadcareImage src={src} width={500} height={500} placeholder="blur" />
     );
 
     expect(screen.getByRole('img')).toHaveStyle(
-      'background-image: url(https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/10x/-/quality/lightest/image.png)'
+      'background-image: url(https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/5x/-/quality/lightest/image.png)'
     );
   });
 
@@ -85,7 +79,6 @@ describe('UploadcareImage', () => {
         src={src}
         width={500}
         height={500}
-        quality={80}
         placeholder="blur"
         blurDataURL={src}
       />

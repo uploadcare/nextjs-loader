@@ -16,18 +16,20 @@ const generateBlurDataUrl = (
   return uploadcareLoader({
     src: src,
     width: blurImageWidth,
-    quality: 0
+    quality: 1
   });
 };
 
-export function UploadcareImage({
-  blurDataURL,
-  ...props
-}: ImageProps): JSX.Element {
+export function UploadcareImage(props: ImageProps): JSX.Element {
+  let blurDataURL: string | undefined;
   if (typeof props.src === 'string' && shouldOverrideBlurDataUrl(props)) {
     blurDataURL = generateBlurDataUrl(props.src, props.width);
   }
   return (
-    <Image loader={uploadcareLoader} blurDataURL={blurDataURL} {...props} />
+    <Image
+      loader={uploadcareLoader}
+      blurDataURL={blurDataURL ?? props.blurDataURL}
+      {...props}
+    />
   );
 }
