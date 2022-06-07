@@ -5,15 +5,21 @@ import { FC } from 'react';
 import styles from '../styles/Home.module.css';
 
 type CodeProps = {
-  [key: string]: any
-}
-const Code: FC<CodeProps> = (p) => 
+  [key: string]: any;
+};
+const Code: FC<CodeProps> = (p) => (
   <code className={styles.inlineCode} {...p} />
+);
 
 const Home: NextPage = () => (
   <div className={styles.container}>
     <div className={styles.card}>
-      <h1>Uploadcare custom loader for Image Component <a href="https://github.com/uploadcare/nextjs-loader">@uploadcare/nextjs-loader</a></h1>
+      <h1>
+        Uploadcare custom loader for Image Component{' '}
+        <a href="https://github.com/uploadcare/nextjs-loader">
+          @uploadcare/nextjs-loader
+        </a>
+      </h1>
       <p>
         The following is an example of a reference to an image from the{' '}
         Uploadcare CDN at <Code>ucarecdn.com</Code>
@@ -31,13 +37,27 @@ const Home: NextPage = () => (
       />
       <hr className={styles.hr} />
       <p>
-        The following is an example of use of the <Code>UploadcareImage</Code> helper component.
+        The following is an example of use of the <Code>UploadcareImage</Code>{' '}
+        helper component.
       </p>
       <UploadcareImage
         alt="Vercel logo"
         src="https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png"
         width={500}
         height={500}
+      />
+      <hr className={styles.hr} />
+      <p>
+        The following is an example of use of the <Code>UploadcareImage</Code>{' '}
+        helper component with <Code>placeholder=blur</Code> property. It&apos;s
+        better to enable network throttling in dev tools to see the blurred placeholder.
+      </p>
+      <UploadcareImage
+        alt="Vercel logo"
+        src="https://ucarecdn.com/c768f1c2-891a-4f54-8e1e-7242df218b51/pinewatt2Hzmz15wGikunsplash.jpg"
+        width={500}
+        height={500}
+        placeholder="blur"
       />
       <hr className={styles.hr} />
       <p>
@@ -68,8 +88,11 @@ const Home: NextPage = () => (
         height={64}
         loader={uploadcareLoader}
       />
-       <hr className={styles.hr} />
-      <p>Local image will be served AS IS in Development, and converted to the absolute URL and passed to the proxy in Production</p>
+      <hr className={styles.hr} />
+      <p>
+        Local image will be served AS IS in Development, and converted to the
+        absolute URL and passed to the proxy in Production
+      </p>
       <Image
         alt="A local image"
         src="/local_image.png"
@@ -78,9 +101,13 @@ const Home: NextPage = () => (
         loader={uploadcareLoader}
       />
       <hr className={styles.hr} />
-      Checkout the project documentation on Github <a href="https://github.com/uploadcare/nextjs-loader">@uploadcare/nextjs-loader</a>.
+      Checkout the project documentation on Github{' '}
+      <a href="https://github.com/uploadcare/nextjs-loader">
+        @uploadcare/nextjs-loader
+      </a>
+      .
     </div>
   </div>
-)
+);
 
-export default Home
+export default Home;
