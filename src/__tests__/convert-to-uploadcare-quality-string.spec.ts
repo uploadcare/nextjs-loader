@@ -1,8 +1,8 @@
 import { convertToUploadcareQualityString } from '../utils/helpers';
 
 describe('convertToUploadcareQualityString', () => {
-  it('should map 0 to lightest', () => {
-    expect(convertToUploadcareQualityString(0)).toBe('lightest');
+  it('should map 1 to lightest', () => {
+    expect(convertToUploadcareQualityString(1)).toBe('lightest');
   });
 
   it('should map 38 to lightest', () => {
