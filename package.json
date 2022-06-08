@@ -1,6 +1,6 @@
 {
   "name": "@uploadcare/nextjs-loader",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Uploadcare custom image loader for Next.js",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",

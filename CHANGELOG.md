@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/uploadcare/nextjs-loader/compare/v0.3.3...v0.4.0) (2022-06-08)
+
+
+### Features
+
+* auto-generate `blurDataURL` property when `placeholder=blur` ([bda8cf1](https://github.com/uploadcare/nextjs-loader/commit/bda8cf1545b3b856064e608eea49b1b18861a3db))
+
+
+
 ## [0.3.3](https://github.com/uploadcare/nextjs-loader/compare/v0.3.2...v0.3.3) (2022-06-01)
 
 
