@@ -17,7 +17,7 @@ describe('UploadcareImage', () => {
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
   });
 
-  test('The UploadcareImage component renders passed image with default settings properly', () => {
+  it('should render passed image with default settings properly', () => {
     const src =
       'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png';
 
@@ -38,7 +38,7 @@ describe('UploadcareImage', () => {
     );
   });
 
-  test('The UploadcareImage component should accept src without filename', () => {
+  it('should accept src without filename', () => {
     const src = 'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/';
 
     render(
@@ -54,6 +54,38 @@ describe('UploadcareImage', () => {
 
     expect(screen.getByRole('img').getAttribute('src')).toEqual(
       'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/1080x/-/quality/normal/'
+    );
+  });
+
+  it('should generate blurDataURL when placeholder=blur passed', () => {
+    const src =
+      'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/image.png';
+
+    render(
+      <UploadcareImage src={src} width={500} height={500} placeholder="blur" />
+    );
+
+    expect(screen.getByRole('img')).toHaveStyle(
+      'background-image: url(https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/5x/-/quality/lightest/image.png)'
+    );
+  });
+
+  it('should not override passed blurDataURL', () => {
+    const src =
+      'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/image.png';
+
+    render(
+      <UploadcareImage
+        src={src}
+        width={500}
+        height={500}
+        placeholder="blur"
+        blurDataURL={src}
+      />
+    );
+
+    expect(screen.getByRole('img')).toHaveStyle(
+      `background-image: url(${src})`
     );
   });
 });

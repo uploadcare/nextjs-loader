@@ -12,12 +12,12 @@ The package helps you use the Uploadcare's transformation and CDN services from 
 
 It provides the `uploadcareLoader` function, which you can use as [a custom loader for the Next's Image component](https://nextjs.org/docs/api-reference/next/image#loader), and the `UploadcareImage` component with the custom loader enabled by default.
 
-
 * [Demo](#demo)
 * [Dependencies](#dependencies)
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Usage](#usage)
+* [Props](#props)
 * [Notes](#notes)
 * [Known Issues](#known-issues)
 * [Links](#links)
@@ -28,7 +28,7 @@ Look at the demo [here][demo-link].
 
 ## Dependencies
 
-The only dependency is Next.js >= 10.0.5. 
+The only dependency is Next.js >= 10.0.5.
 
 ## Installation
 
@@ -108,7 +108,7 @@ The `UploadcareImage` component supports the same parameters as the Next `Image`
 import Image from 'next/image';
 import { uploadcareLoader } from '@uploadcare/nextjs-loader';
 
-<Image 
+<Image
   alt="A test image"
   src="https://your-domain/image.jpg"
   width="400"
@@ -122,7 +122,7 @@ import { uploadcareLoader } from '@uploadcare/nextjs-loader';
 
 In that case, you may not need the `loader: "custom"` setting in your `next.config.js`.
 
-1. Install [next-image-loader](https://www.npmjs.com/package/next-image-loader) and enable it as described in its README. 
+1. Install [next-image-loader](https://www.npmjs.com/package/next-image-loader) and enable it as described in its README.
 
 2. Create `image-loader.config.js` in the project root (in the same directory as `next.config.js`)
 and add this code to it:
@@ -140,7 +140,7 @@ imageLoader.loader = uploadcareLoader;
 ```tsx
 import Image from 'next/image';
 
-<Image 
+<Image
   alt="A test image"
   src="https://your-domain/image.jpg"
   width="400"
@@ -155,7 +155,7 @@ Please note that you can still use any other loader for a separate image like th
 import Image from 'next/image';
 import anotherLoader from '[another-loader-project-name]';
 
-<Image 
+<Image
   alt="A test image"
   src="https://your-domain/image.jpg"
   width="400"
@@ -167,15 +167,71 @@ import anotherLoader from '[another-loader-project-name]';
 
 where `anotherLoader` will be used instead of the Uploadcare loader for this particular image.
 
+## Props
+
+### `placeholder` and `blurDataURL`
+
+[Read Next.js Image Component docs](https://nextjs.org/docs/api-reference/next/image#placeholder) about `placeholder` and `blurDataURL`.
+
+There are two possible use cases:
+
+  1. [When `src` is a string](#when-src-is-a-string)
+  2. [When `src` is a static import](#when-src-is-a-static-import)
+
+#### When `src` is a string
+
+This options is available for the `UploadcareImage` component only. It won't work when you're using custom loader directly.
+
+If you pass `placeholder="blur"` to the `UploadcareImage` component, it will generate `blurDataURL` with the URL of the placeholder image (not base64) and use it as a placeholder. You can override `blurDataURL`.
+
+
+```tsx
+
+```jsx
+<UploadcareImage
+  alt="A test image"
+  src="https://your-domain/image.jpg"
+  width="400"
+  height="300"
+  quality="80"
+  placeholder="blur"
+/>
+```
+
+#### When `src` is a static import
+
+You can use both `UploadcareImage` and `Image` component with custom loader. In this case Next.js will generate base64 encoded image for `blurDataURL` automatically during build time.
+
+```jsx
+import staticImage from 'image.jpg'
+
+<UploadcareImage
+  alt="A test image"
+  src={staticImage}
+  width="400"
+  height="300"
+  quality="80"
+  placeholder="blur"
+/>
+```
+
 ## Notes
 
 - If you have jpegs larger than 3000px and you want loader to resize them up to 5000px, you need to pass filename with `jpeg` or `jpg`  extension to the src url. See [Output image dimensions docs](https://uploadcare.com/docs/transformations/image/#dimensions) for more details. When no filename provided, we'll treat the image as non-jpeg and can resize it up to 3000px only.
 
 - If you pass a local image url, the loader returns it AS IS if the app is run in the development mode or if the `NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL` is not set.
 
+- Next.js Image component allows numeric only `quality` value. Uploadcare CDN supports string-based quality only (see [our docs](https://uploadcare.com/docs/transformations/image/compression/#operation-quality)). So numeric quality values will be mapped onto string ones using the following intervals:
+
+  - 1-38 - lightest
+  - 39-70 - lighter
+  - 71-80 - normal
+  - 81-88 - better
+  - 89-100 - best
+
 ## Known Issues
 
-**Issue 1:** Console warning like this: 
+**Issue 1:** Console warning like this:
 > Image with src "${src}" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.
 Read more: https://nextjs.org/docs/messages/next-image-missing-loader-width
 
@@ -191,5 +247,5 @@ Next checks whether the image url which loader generates has the exact value whi
 [test-status-img]: https://github.com/uploadcare/nextjs-loader/actions/workflows/test-and-lint.yml/badge.svg
 [npm-img]: https://img.shields.io/npm/v/@uploadcare/nextjs-loader.svg
 [npm-link]: https://www.npmjs.com/package/@uploadcare/nextjs-loader
-[demo-link]: https://uploadcare-nextjs-loader.vercel.app/
+[demo-link]: https://uploadcare-nextjs-loader.netlify.app/
 [uploadcare-transformation-image-compression-docs]: https://uploadcare.com/docs/transformations/image/compression/?utm_source=github&utm_campaign=nextjs-loader
