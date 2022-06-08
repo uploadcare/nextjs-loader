@@ -21,7 +21,6 @@ import {
   trimTrailingSlash
 } from './helpers';
 
-// TODO: add support for StaticImport, see https://nextjs.org/docs/basic-features/image-optimization#local-images
 export function uploadcareLoader({
   src,
   width,

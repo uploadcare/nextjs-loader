@@ -28,7 +28,6 @@ const generateBlurDataUrl = (
 
 export function UploadcareImage(props: ImageProps): JSX.Element {
   let blurDataURL: string | undefined;
-  // TODO: add support for StaticImport, see https://nextjs.org/docs/basic-features/image-optimization#local-images
   if (typeof props.src === 'string' && shouldOverrideBlurDataUrl(props)) {
     blurDataURL = generateBlurDataUrl(props.src, props.width);
   }
