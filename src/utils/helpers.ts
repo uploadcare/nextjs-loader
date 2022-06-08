@@ -68,6 +68,8 @@ export function convertToUploadcareQualityString(
   requestedQuality?: number
 ): string {
   // If any particular quality has not been requested, we use the smart quality mode.
+  // zero quality is treated as no quality, so we use smart.
+  // see https://nextjs.org/docs/api-reference/next/image#quality
   if (!requestedQuality) {
     return 'smart';
   }
