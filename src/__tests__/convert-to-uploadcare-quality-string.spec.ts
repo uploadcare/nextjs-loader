@@ -17,7 +17,7 @@ describe('convertToUploadcareQualityString', () => {
     expect(convertToUploadcareQualityString(100)).toBe('best');
   });
 
-  it('should falsy values to smart', () => {
+  it('should map falsy values to smart', () => {
     expect(convertToUploadcareQualityString()).toBe('smart');
     expect(convertToUploadcareQualityString(0)).toBe('smart');
   });
