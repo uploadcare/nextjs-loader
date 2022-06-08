@@ -8,7 +8,11 @@ import { getInt } from '../utils/helpers';
 import { uploadcareLoader } from '../utils/loader';
 
 const shouldOverrideBlurDataUrl = (props: ImageProps): boolean => {
-  return props.placeholder === 'blur' && !props.blurDataURL;
+  return (
+    typeof props.src === 'string' &&
+    props.placeholder === 'blur' &&
+    !props.blurDataURL
+  );
 };
 
 const generateBlurDataUrl = (
@@ -27,15 +31,11 @@ const generateBlurDataUrl = (
 };
 
 export function UploadcareImage(props: ImageProps): JSX.Element {
-  let blurDataURL: string | undefined;
-  if (typeof props.src === 'string' && shouldOverrideBlurDataUrl(props)) {
-    blurDataURL = generateBlurDataUrl(props.src, props.width);
+  let blurDataURL = props.blurDataURL;
+  if (shouldOverrideBlurDataUrl(props)) {
+    blurDataURL = generateBlurDataUrl(props.src as string, props.width);
   }
   return (
-    <Image
-      loader={uploadcareLoader}
-      blurDataURL={blurDataURL ?? props.blurDataURL}
-      {...props}
-    />
+    <Image loader={uploadcareLoader} blurDataURL={blurDataURL} {...props} />
   );
 }
