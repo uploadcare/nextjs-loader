@@ -171,11 +171,19 @@ where `anotherLoader` will be used instead of the Uploadcare loader for this par
 
 ### `placeholder` and `blurDataURL`
 
+[Read Next.js Image Component docs](https://nextjs.org/docs/api-reference/next/image#placeholder) about `placeholder` and `blurDataURL`.
+
+There are two possible use cases:
+
+  1. [When `src` is a string][when-src-is-a-string]
+  2. [When `src` is a static import][when-src-is-a-static-import]
+
+#### When `src` is a string
+
 This options is available for the `UploadcareImage` component only. It won't work when you're using custom loader directly.
 
 If you pass `placeholder="blur"` to the `UploadcareImage` component, it will generate `blurDataURL` with the URL of the placeholder image (not base64) and use it as a placeholder. You can override `blurDataURL`.
 
-[Read more](https://nextjs.org/docs/api-reference/next/image#placeholder) about `placeholder` and `blurDataURL`.
 
 ```tsx
 
@@ -183,6 +191,23 @@ If you pass `placeholder="blur"` to the `UploadcareImage` component, it will gen
 <UploadcareImage
   alt="A test image"
   src="https://your-domain/image.jpg"
+  width="400"
+  height="300"
+  quality="80"
+  placeholder="blur"
+/>
+```
+
+#### When `src` is a static import
+
+You can use both `UploadcareImage` and `Image` component with custom loader. In this case Next.js will generate base64 encoded image for `blurDataURL` automatically during build time.
+
+```jsx
+import staticImage from 'image.jpg'
+
+<UploadcareImage
+  alt="A test image"
+  src={staticImage}
   width="400"
   height="300"
   quality="80"
