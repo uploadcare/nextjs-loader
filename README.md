@@ -175,8 +175,8 @@ where `anotherLoader` will be used instead of the Uploadcare loader for this par
 
 There are two possible use cases:
 
-  1. [When `src` is a string][when-src-is-a-string]
-  2. [When `src` is a static import][when-src-is-a-static-import]
+  1. [When `src` is a string](#when-src-is-a-string)
+  2. [When `src` is a static import](#when-src-is-a-static-import)
 
 #### When `src` is a string
 
