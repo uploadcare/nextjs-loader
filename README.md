@@ -184,10 +184,7 @@ This options is available for the `UploadcareImage` component only. It won't wor
 
 If you pass `placeholder="blur"` to the `UploadcareImage` component, it will generate `blurDataURL` with the URL of the placeholder image (not base64) and use it as a placeholder. You can override `blurDataURL`.
 
-
 ```tsx
-
-```jsx
 <UploadcareImage
   alt="A test image"
   src="https://your-domain/image.jpg"
@@ -202,7 +199,7 @@ If you pass `placeholder="blur"` to the `UploadcareImage` component, it will gen
 
 You can use both `UploadcareImage` and `Image` component with custom loader. In this case Next.js will generate base64 encoded image for `blurDataURL` automatically during build time.
 
-```jsx
+```tsx
 import staticImage from 'image.jpg'
 
 <UploadcareImage
