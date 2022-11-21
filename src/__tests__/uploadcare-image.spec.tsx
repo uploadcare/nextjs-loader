@@ -43,6 +43,7 @@ describe('UploadcareImage', () => {
 
     render(
       <UploadcareImage
+        alt="Test image"
         src={src}
         width={500}
         height={500}
@@ -54,38 +55,6 @@ describe('UploadcareImage', () => {
 
     expect(screen.getByRole('img').getAttribute('src')).toEqual(
       'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/1080x/-/quality/normal/'
-    );
-  });
-
-  it('should generate blurDataURL when placeholder=blur passed', () => {
-    const src =
-      'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/image.png';
-
-    render(
-      <UploadcareImage src={src} width={500} height={500} placeholder="blur" />
-    );
-
-    expect(screen.getByRole('img')).toHaveStyle(
-      'background-image: url(https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/5x/-/quality/lightest/image.png)'
-    );
-  });
-
-  it('should not override passed blurDataURL', () => {
-    const src =
-      'https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/image.png';
-
-    render(
-      <UploadcareImage
-        src={src}
-        width={500}
-        height={500}
-        placeholder="blur"
-        blurDataURL={src}
-      />
-    );
-
-    expect(screen.getByRole('img')).toHaveStyle(
-      `background-image: url(${src})`
     );
   });
 });

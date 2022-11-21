@@ -145,16 +145,6 @@ export function isJpegExtension(extension: string): boolean {
   return ['jpg', 'jpeg'].includes(extension.toLowerCase());
 }
 
-export function getInt(x: unknown): number | undefined {
-  if (typeof x === 'number') {
-    return x;
-  }
-  if (typeof x === 'string') {
-    return parseInt(x, 10);
-  }
-  return undefined;
-}
-
 function _parseUploadcareTransformationParam(param: string): string[] {
   return param.split('/');
 }
