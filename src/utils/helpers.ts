@@ -114,13 +114,14 @@ export function generateCustomProxyEndpoint(customProxyDomain: string): string {
 }
 
 export function isCdnUrl(url: string, cdnDomain: string): boolean {
-  //eslint-disable-next-line
-  const escapedCdnDomain = cdnDomain.replace('.', '.');
+  url = url.trim();
+  if (url.startsWith('//')) {
+    url = location.protocol + url;
+  } else if (url.startsWith('/')) {
+    return false;
+  }
 
-  //eslint-disable-next-line
-  const regexp = new RegExp(`^https?:\/\/${escapedCdnDomain}`);
-
-  return regexp.test(url);
+  return new URL(url).hostname === cdnDomain.trim();
 }
 
 export function isProduction(): boolean {
