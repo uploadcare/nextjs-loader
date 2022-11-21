@@ -109,6 +109,9 @@ export function uploadcareLoader({
 
     // Return the relative url AS IS if the base path is not set.
     if (!isBasePathSet) {
+      console.warn(
+        'Env variable "NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL" is not set. You should set it to be able to serve local images.'
+      );
       return src;
     }
 
