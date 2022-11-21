@@ -3,3 +3,6 @@ build
 .github
 .husky
 .env
+
+# Local Netlify folder
+.netlify
