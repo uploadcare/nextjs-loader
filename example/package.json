@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:ci": "NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL=$DEPLOY_PRIME_URL NODE_ENV=production next build",
+    "build:ci": "NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL=$URL NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint"
   },
