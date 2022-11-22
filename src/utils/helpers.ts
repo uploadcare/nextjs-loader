@@ -121,13 +121,6 @@ export function isRelativeUrl(url: string): boolean {
   return url.startsWith('/') && !isProtocolRelativeUrl(url);
 }
 
-export function ensureUrlProtocol(url: string): string {
-  if (isProtocolRelativeUrl(url)) {
-    return 'https:' + url;
-  }
-  return url;
-}
-
 export function isCdnUrl(url: string, cdnDomain: string): boolean {
   if (isRelativeUrl(url)) {
     return false;
