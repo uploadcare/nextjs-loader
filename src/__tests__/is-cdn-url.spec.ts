@@ -14,7 +14,6 @@ describe('isCdnUrl', () => {
     expect(
       isCdnUrl('http://custom.domain.com', 'custom.domain.com')
     ).toBeTruthy();
-    expect(isCdnUrl('//ucarecdn.com/', 'ucarecdn.com')).toBeTruthy();
   });
 
   it("should return false in cases when provided URL doesn't matches provided domain", () => {
@@ -22,11 +21,13 @@ describe('isCdnUrl', () => {
       isCdnUrl('https://ucarecdn.com/:uuid/:filename', 'other.com')
     ).toBeFalsy();
     expect(isCdnUrl('http://custom.domain.com', 'ucarecdn.com')).toBeFalsy();
-    expect(isCdnUrl('//custom.domain.com/', 'ucarecdn.com')).toBeFalsy();
   });
 
   it('should throw a error if invalid URL provided', () => {
     expect(() => isCdnUrl('ucarecdn', 'ucarecdn.com')).toThrowError(
+      /Invalid URL/
+    );
+    expect(() => isCdnUrl('//ucarecdn.com', 'ucarecdn.com')).toThrowError(
       /Invalid URL/
     );
   });
