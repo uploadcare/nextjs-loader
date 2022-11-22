@@ -88,7 +88,7 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 
 ## Usage
 
-**Option 1**. Use the `UploadcareImage` component and leave us the reset ;)
+**Option 1**. Use the `UploadcareImage` component and leave us the rest ;)
 ```tsx
 import UploadcareImage from '@uploadcare/nextjs-loader';
 
@@ -207,7 +207,7 @@ There are two possible use cases:
 
 #### When `src` is a string
 
-If you pass `placeholder="blur"` to the `UploadcareImage` component, the `blurDataURL` property will be used as the placeholder. In this case you must provide the `blurDataURL` property using our `getBlurDataURL` server-side helper.
+If you pass `placeholder="blur"` to the `Image` or `UploadcareImage` component, the `blurDataURL` property will be used as the placeholder. In this case you must provide the `blurDataURL` property using our `getBlurDataURL` server-side helper.
 
 Here is the ``getBlurDataURL` interface:
 
