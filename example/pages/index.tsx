@@ -35,7 +35,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <div className={styles.card}>
       <h1>
         Uploadcare custom loader for Image Component{' '}
-        <a href="https://github.com/uploadcare/nextjs-loader">
+        <a href="//github.com/uploadcare/nextjs-loader">
           @uploadcare/nextjs-loader
         </a>
       </h1>
@@ -50,7 +50,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <Image
         loader={uploadcareLoader}
         alt="Vercel logo"
-        src="https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png"
+        src="//ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png"
         width={500}
         height={500}
         sizes="(max-width: 50rem) 100vw, 50rem"
@@ -63,7 +63,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       </p>
       <UploadcareImage
         alt="Vercel logo"
-        src="https://ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png"
+        src="//ucarecdn.com/a6f8abc8-f92e-460a-b7a1-c5cd70a18cdb/vercel.png"
         width={500}
         height={500}
         sizes="(max-width: 50rem) 100vw, 50rem"
@@ -94,7 +94,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <p>It will be proxied through Media Proxy.</p>
       <Image
         alt="Next.js logo"
-        src="https://assets.vercel.com/image/upload/v1538361091/repositories/next-js/next-js.png"
+        src="//assets.vercel.com/image/upload/v1538361091/repositories/next-js/next-js.png"
         width={500}
         height={166}
         loader={uploadcareLoader}
@@ -104,14 +104,14 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <p>SVGs and GIFs will be used without transformations</p>
       <Image
         alt="Next.js logo"
-        src="https://ucarecdn.com/375bba4b-35db-4cb8-8fc7-7540625f2181/next.svg"
+        src="//ucarecdn.com/375bba4b-35db-4cb8-8fc7-7540625f2181/next.svg"
         width={64}
         height={64}
         loader={uploadcareLoader}
       />
       <Image
         alt="Vercel logo"
-        src="https://ucarecdn.com/0f23a269-13eb-4fc9-b378-86f224380d26/vercel.gif"
+        src="//ucarecdn.com/0f23a269-13eb-4fc9-b378-86f224380d26/vercel.gif"
         width={64}
         height={64}
         loader={uploadcareLoader}
@@ -140,7 +140,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       />
       <hr className={styles.hr} />
       Checkout the project documentation on Github{' '}
-      <a href="https://github.com/uploadcare/nextjs-loader">
+      <a href="//github.com/uploadcare/nextjs-loader">
         @uploadcare/nextjs-loader
       </a>
       .

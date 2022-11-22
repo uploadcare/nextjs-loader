@@ -67,7 +67,7 @@ describe('uploadcareLoader', () => {
 
     const t = () => {
       uploadcareLoader({
-        src: '',
+        src: 'https://example.com',
         width: 0,
         quality: 80
       });
@@ -95,7 +95,7 @@ describe('uploadcareLoader', () => {
   });
 
   test('The loader parses user paramters properly', () => {
-    const src = 'https:/example.com/image.jpg';
+    const src = 'https://example.com/image.jpg';
 
     addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
 
@@ -108,7 +108,7 @@ describe('uploadcareLoader', () => {
     });
 
     expect(result).toBe(
-      'https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/500x/-/quality/normal/https:/example.com/image.jpg'
+      'https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/500x/-/quality/normal/https://example.com/image.jpg'
     );
 
     // Override default params, including resize and quality.
@@ -125,7 +125,7 @@ describe('uploadcareLoader', () => {
     });
 
     expect(result).toBe(
-      'https://test-public-key.ucr.io/-/format/jpg/-/stretch/on/-/progressive/no/-/resize/1x/-/quality/smart_retina/https:/example.com/image.jpg'
+      'https://test-public-key.ucr.io/-/format/jpg/-/stretch/on/-/progressive/no/-/resize/1x/-/quality/smart_retina/https://example.com/image.jpg'
     );
 
     // Add a new parameter (no defaults).
@@ -142,7 +142,7 @@ describe('uploadcareLoader', () => {
     });
 
     expect(result).toBe(
-      'https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/500x/-/quality/normal/-/new/parameter/https:/example.com/image.jpg'
+      'https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/500x/-/quality/normal/-/new/parameter/https://example.com/image.jpg'
     );
 
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');
@@ -150,7 +150,7 @@ describe('uploadcareLoader', () => {
   });
 
   test("The loader doesn't process SVG and GIF (absolute url)", () => {
-    const src = 'https:/example.com/image.svg';
+    const src = 'https://example.com/image.svg';
 
     addEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY', 'test-public-key');
 
@@ -242,7 +242,7 @@ describe('uploadcareLoader', () => {
 
     // Not a jpg image. Should be max 3000 width.
 
-    let src = 'https:/example.com/image.png';
+    let src = 'https://example.com/image.png';
 
     addEnvVar(
       'NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS',
@@ -256,7 +256,7 @@ describe('uploadcareLoader', () => {
     });
 
     expect(result).toBe(
-      'https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/3000x/-/quality/normal/https:/example.com/image.png'
+      'https://test-public-key.ucr.io/-/format/auto/-/stretch/off/-/progressive/yes/-/resize/3000x/-/quality/normal/https://example.com/image.png'
     );
 
     // Jpg image by format. Should be max 5000 width.
@@ -273,13 +273,13 @@ describe('uploadcareLoader', () => {
     });
 
     expect(result).toBe(
-      'https://test-public-key.ucr.io/-/format/jpeg/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https:/example.com/image.png'
+      'https://test-public-key.ucr.io/-/format/jpeg/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https://example.com/image.png'
     );
 
     // // Jpg image by extension with auto format.
     // // Should be max 5000 width with /format/jpeg/ forced.
 
-    src = 'https:/example.com/image.jpg';
+    src = 'https://example.com/image.jpg';
 
     addEnvVar(
       'NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS',
@@ -293,7 +293,7 @@ describe('uploadcareLoader', () => {
     });
 
     expect(result).toBe(
-      'https://test-public-key.ucr.io/-/format/jpeg/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https:/example.com/image.jpg'
+      'https://test-public-key.ucr.io/-/format/jpeg/-/stretch/off/-/progressive/yes/-/resize/5000x/-/quality/normal/https://example.com/image.jpg'
     );
 
     removeEnvVar('NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY');

@@ -18,7 +18,9 @@ import {
   isProduction,
   mergeParams,
   parseUserParamsString,
-  trimTrailingSlash
+  trimTrailingSlash,
+  isRelativeUrl,
+  ensureUrlProtocol
 } from './helpers';
 
 export function uploadcareLoader({
@@ -43,10 +45,11 @@ export function uploadcareLoader({
     process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL || ''
   );
 
+  src = ensureUrlProtocol(src);
   const proxy = trimTrailingSlash(proxyEndpoint);
   const isProductionMode = isProduction();
   const isImageOnCdn = isCdnUrl(src, cdnDomain);
-  const isImageRelative = src.startsWith('/');
+  const isImageRelative = isRelativeUrl(src);
 
   // Development mode; not on CDN.
   if (!isProductionMode && !isImageOnCdn) {
@@ -109,6 +112,9 @@ export function uploadcareLoader({
 
     // Return the relative url AS IS if the base path is not set.
     if (!isBasePathSet) {
+      console.warn(
+        'Env variable "NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL" is not set. You should set it to be able to serve local images.'
+      );
       return src;
     }
 
