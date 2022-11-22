@@ -209,7 +209,7 @@ There are two possible use cases:
 
 If you pass `placeholder="blur"` to the `Image` or `UploadcareImage` component, the `blurDataURL` property will be used as the placeholder. In this case you must provide the `blurDataURL` property using our `getBlurDataURL` server-side helper.
 
-Here is the ``getBlurDataURL` interface:
+Here is the `getBlurDataURL` interface:
 
 ```ts
 function getBlurDataURL(
