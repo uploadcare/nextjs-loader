@@ -19,8 +19,7 @@ import {
   mergeParams,
   parseUserParamsString,
   trimTrailingSlash,
-  isRelativeUrl,
-  ensureUrlProtocol
+  isRelativeUrl
 } from './helpers';
 
 export function uploadcareLoader({
@@ -45,7 +44,6 @@ export function uploadcareLoader({
     process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL || ''
   );
 
-  src = ensureUrlProtocol(src);
   const proxy = trimTrailingSlash(proxyEndpoint);
   const isProductionMode = isProduction();
   const isImageOnCdn = isCdnUrl(src, cdnDomain);

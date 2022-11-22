@@ -121,13 +121,6 @@ export function isRelativeUrl(url: string): boolean {
   return url.startsWith('/') && !isProtocolRelativeUrl(url);
 }
 
-export function ensureUrlProtocol(url: string): string {
-  if (isProtocolRelativeUrl(url)) {
-    return 'https:' + url;
-  }
-  return url;
-}
-
 export function isCdnUrl(url: string, cdnDomain: string): boolean {
   if (isRelativeUrl(url)) {
     return false;
@@ -155,16 +148,6 @@ export function isDotenvParamEmpty(param: string | null): boolean {
 
 export function isJpegExtension(extension: string): boolean {
   return ['jpg', 'jpeg'].includes(extension.toLowerCase());
-}
-
-export function getInt(x: unknown): number | undefined {
-  if (typeof x === 'number') {
-    return x;
-  }
-  if (typeof x === 'string') {
-    return parseInt(x, 10);
-  }
-  return undefined;
 }
 
 function _parseUploadcareTransformationParam(param: string): string[] {

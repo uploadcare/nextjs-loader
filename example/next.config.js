@@ -2,6 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    loader: "custom"
-  }
+    loader: 'custom',
+    loaderFile: "./node_modules/@uploadcare/nextjs-loader/build/loader.js",
+  },
 }

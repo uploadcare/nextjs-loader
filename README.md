@@ -56,7 +56,7 @@ Add your public Uploadcare key to your `.env*` config file. You can copy it from
 NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY="YOUR_PUBLIC_KEY"
 ```
 
-Alternatively, in case you're using a custom proxy, set the proxy domain.
+Alternatively, in case you're using a [custom proxy endpoint][docs-custom-proxy-endpoint], set the proxy domain.
 
 ```ini
 #.env
@@ -88,7 +88,7 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 
 ## Usage
 
-**Option 1**. Use the `UploadcareImage` component and leave us the reset ;)
+**Option 1**. Use the `UploadcareImage` component and leave us the rest ;)
 ```tsx
 import UploadcareImage from '@uploadcare/nextjs-loader';
 
@@ -118,7 +118,34 @@ import { uploadcareLoader } from '@uploadcare/nextjs-loader';
 />
 ```
 
-**Option 3**. Use the [next-image-loader](https://www.npmjs.com/package/next-image-loader) plugin to enable Uploadcare image loader for all images by default
+**Option 3 (Next.js v13+ only)**. Use the [`loaderFile` setting][loader-file] to enable Uploadcare image loader for all images by default.
+
+1. Configure the `loaderFile` in your `next.config.js` like the following:
+
+```js
+module.exports = {
+  images: {
+    loader: 'custom',
+    loaderFile: './node_modules/@uploadcare/nextjs-loader/build/loader.js',
+  },
+}
+```
+
+2. Use `Image` as usual, with Uploadcare loader enabled implicitly:
+
+```tsx
+import Image from 'next/image';
+
+<Image
+  alt="A test image"
+  src="https://your-domain/image.jpg"
+  width="400"
+  height="300"
+  quality="80"
+/>
+```
+
+**Option 4**. Use the [next-image-loader](https://www.npmjs.com/package/next-image-loader) plugin to enable Uploadcare image loader for all images by default
 
 In that case, you may not need the `loader: "custom"` setting in your `next.config.js`.
 
@@ -180,19 +207,45 @@ There are two possible use cases:
 
 #### When `src` is a string
 
-This options is available for the `UploadcareImage` component only. It won't work when you're using custom loader directly.
+If you pass `placeholder="blur"` to the `Image` or `UploadcareImage` component, the `blurDataURL` property will be used as the placeholder. In this case you must provide the `blurDataURL` property using our `getBlurDataURL` server-side helper.
 
-If you pass `placeholder="blur"` to the `UploadcareImage` component, it will generate `blurDataURL` with the URL of the placeholder image (not base64) and use it as a placeholder. You can override `blurDataURL`.
+Here is the ``getBlurDataURL` interface:
+
+```ts
+function getBlurDataURL(
+  src: string,
+  width = 10,
+  quality = 1
+): Promise<string>
+```
+
+Usage example:
 
 ```tsx
-<UploadcareImage
-  alt="A test image"
-  src="https://your-domain/image.jpg"
-  width="400"
-  height="300"
-  quality="80"
-  placeholder="blur"
-/>
+import UploadcareImage, { getBlurDataURL } from '@uploadcare/nextjs-loader';
+
+const BLUR_IMAGE_URL = "https://your-domain/image.jpg"
+
+export const getStaticProps = async () => {
+  const blurDataURL = await getBlurDataURL(BLUR_IMAGE_URL);
+
+  return {
+    props: { blurDataURL }
+  };
+};
+
+export default ({ blurDataURL }) => {
+  return (
+    <UploadcareImage
+      alt="Blurred image"
+      src={BLUR_IMAGE_URL}
+      width="400"
+      height="300"
+      placeholder="blur"
+      blurDataURL={blurDataURL}
+    />
+  )
+}
 ```
 
 #### When `src` is a static import
@@ -246,3 +299,6 @@ Next checks whether the image url which loader generates has the exact value whi
 [npm-link]: https://www.npmjs.com/package/@uploadcare/nextjs-loader
 [demo-link]: https://uploadcare-nextjs-loader.netlify.app/
 [uploadcare-transformation-image-compression-docs]: https://uploadcare.com/docs/transformations/image/compression/?utm_source=github&utm_campaign=nextjs-loader
+[docs-custom-proxy-endpoint]: https://uploadcare.com/docs/delivery/proxy/#usage-endpoint
+[last-next-12-release]: https://github.com/uploadcare/nextjs-loader/tree/v0.4.0
+[loader-file]: https://nextjs.org/docs/api-reference/next/image#loader-configuration
