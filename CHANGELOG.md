@@ -1,17 +1,15 @@
 # [1.0.0](https://github.com/uploadcare/nextjs-loader/compare/v0.4.0...v1.0.0) (2022-11-22)
 
 
-* feat!: add a `getBlurDataURL` server-side helper to generate base64 blurred placeholder ([5404d56](https://github.com/uploadcare/nextjs-loader/commit/5404d564e211aee6a633dfb272de71e0c4c0ce85))
-
-
 ### Features
 
+* add a `getBlurDataURL` server-side helper to generate base64 blurred placeholder ([5404d56](https://github.com/uploadcare/nextjs-loader/commit/5404d564e211aee6a633dfb272de71e0c4c0ce85))
 * add separate `loader.js` module entry to be used with Next.js v13 `loaderFile` setting ([a6577b7](https://github.com/uploadcare/nextjs-loader/commit/a6577b7cca4c5a7b8ddf26beb29ad9ddc9a261f6))
 
 
 ### BREAKING CHANGES
 
-* previously implemented `blurDataURL` auto-generation won't work in Next.js v13. It was a bad way because the blurry image was requested from the server in runtime. A New way is to generate a blurry image base64 string at build time.
+* previously implemented `blurDataURL` auto-generation won't work in Next.js v13. It was a bad way because the blurry image was requested from the server in runtime. A new way is to generate a blurry image base64 string at build time using `getBlurDataURL`. See [README](https://github.com/uploadcare/nextjs-loader#when-src-is-a-string).
 
 
 
