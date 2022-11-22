@@ -113,14 +113,26 @@ export function generateCustomProxyEndpoint(customProxyDomain: string): string {
   return `https://${customProxyDomain}`;
 }
 
+function isProtocolRelativeUrl(url: string): boolean {
+  return url.startsWith('//');
+}
+
+export function isRelativeUrl(url: string): boolean {
+  return url.startsWith('/') && !isProtocolRelativeUrl(url);
+}
+
+export function ensureUrlProtocol(url: string): string {
+  if (isProtocolRelativeUrl(url)) {
+    return 'https:' + url;
+  }
+  return url;
+}
+
 export function isCdnUrl(url: string, cdnDomain: string): boolean {
-  //eslint-disable-next-line
-  const escapedCdnDomain = cdnDomain.replace('.', '.');
-
-  //eslint-disable-next-line
-  const regexp = new RegExp(`^https?:\/\/${escapedCdnDomain}`);
-
-  return regexp.test(url);
+  if (isRelativeUrl(url)) {
+    return false;
+  }
+  return new URL(url).hostname === cdnDomain.trim();
 }
 
 export function isProduction(): boolean {

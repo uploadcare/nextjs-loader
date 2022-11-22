@@ -18,7 +18,9 @@ import {
   isProduction,
   mergeParams,
   parseUserParamsString,
-  trimTrailingSlash
+  trimTrailingSlash,
+  isRelativeUrl,
+  ensureUrlProtocol
 } from './helpers';
 
 export function uploadcareLoader({
@@ -43,10 +45,11 @@ export function uploadcareLoader({
     process.env.NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL || ''
   );
 
+  src = ensureUrlProtocol(src);
   const proxy = trimTrailingSlash(proxyEndpoint);
   const isProductionMode = isProduction();
   const isImageOnCdn = isCdnUrl(src, cdnDomain);
-  const isImageRelative = src.startsWith('/');
+  const isImageRelative = isRelativeUrl(src);
 
   // Development mode; not on CDN.
   if (!isProductionMode && !isImageOnCdn) {
