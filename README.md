@@ -63,11 +63,11 @@ Alternatively, in case you're using a [custom proxy endpoint][docs-custom-proxy-
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 ```
 
-Then set the app base url (to get relative image urls processed in Production):
+If you're using a proxy, provide your application's base URL (alsowhitelisted), which is required to process local images properly:
 
 ```ini
 #.env
-NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL="https://example.com/"
+NEXT_PUBLIC_UPLOADCARE_APP_BASE_URL="https://your-domain.com/"
 ```
 
 That's it. You may now use `@uploadcare/nextjs-loader` in your app (see [Usage](#usage)).
@@ -86,6 +86,16 @@ NEXT_PUBLIC_UPLOADCARE_CUSTOM_CDN_DOMAIN="cdn.example.com"
 
 > Please note `NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS` override corresponding default parameters and keep others in place.
 
+Image transformation settings example:
+
+```js{noAutoLinker}
+# .env
+NEXT_PUBLIC_UPLOADCARE_TRANSFORMATION_PARAMETERS="format/auto, quality/smart_retina, stretch/off, progressive/yes"
+```
+
+The default image transformation parameters are `format/auto, stretch/off, progressive/yes`. 
+If `quality` isn't explicitly specified, the plugin will use `quality/smart` by default.
+
 ## Usage
 
 **Option 1**. Use the `UploadcareImage` component and leave us the rest ;)
@@ -97,7 +107,6 @@ import UploadcareImage from '@uploadcare/nextjs-loader';
   src="https://your-domain/image.jpg"
   width="400"
   height="300"
-  quality="80"
 />
 ```
 The `UploadcareImage` component supports the same parameters as the Next `Image` component.
