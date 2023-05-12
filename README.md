@@ -63,7 +63,7 @@ Alternatively, in case you're using a [custom proxy endpoint][docs-custom-proxy-
 NEXT_PUBLIC_UPLOADCARE_CUSTOM_PROXY_DOMAIN="proxy.example.com"
 ```
 
-If you're using a proxy, provide your application's base URL (alsowhitelisted), which is required to process local images properly:
+If you're using a proxy, provide your application's base URL (also whitelisted), which is required to process local images properly:
 
 ```ini
 #.env
