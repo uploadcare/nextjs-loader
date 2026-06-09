@@ -1,4 +1,3 @@
 module.exports = {
-  publishCommand: ({ defaultCommand, tag }) =>
-    `${defaultCommand} --access public --tag ${tag}`
+  publishCommand: ({ tag }) => `npm stage publish --tag ${tag}`
 };
