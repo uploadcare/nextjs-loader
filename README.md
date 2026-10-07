@@ -3,9 +3,13 @@
 [![NPM version][npm-img]][npm-link]
 
 <a href="https://uploadcare.com/?utm_source=github&utm_campaign=nextjs-loader">
-  <img align="right" width="56" height="56"
-    src="https://ucarecdn.com/1cc871de-5d82-442d-b4d6-aa2e35966879/-/resize/112x112/-/quality/lightest/logocircle2x.png"
-    alt="">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://ucarecdn.com/0c643d09-f5cb-47f5-ac55-8e5273819476/uploadcare-logo-mark-inverted.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://ucarecdn.com/4f546650-8772-4222-baf3-2ad2d5a855b0/uploadcare-logo-mark.svg">
+    <img align="right" width="56" height="56"
+      src="https://ucarecdn.com/4f546650-8772-4222-baf3-2ad2d5a855b0/uploadcare-logo-mark.svg"
+      alt="">
+  </picture>
 </a>
 
 The package helps you use the Uploadcare's transformation and CDN services from a Next.js app smoothly and easily.
